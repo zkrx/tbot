@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Logging &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Migrating from tbot 0.7.1" href="migration.html" />
+    <link rel="prev" title="Recipes" href="recipes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generators">Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#log-events">Log Events</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Logging</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/logging.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logging">
+<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<p>tbot can keep record of test-runs in a log-file.  For this, entries detailing a number of events
+will be stored:</p>
+<ul class="simple">
+<li><p>Testcase begin and end, their duration and success state.</p></li>
+<li><p>All commands which are run, their output, return-code, and on which machine they were run.</p></li>
+<li><p>Custom messages and events emitted by testcases (for example by using
+<a class="reference internal" href="modules/log.html#tbot.log.message" title="tbot.log.message"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.log.message()</span></code></a>).</p></li>
+</ul>
+<p>To enable logging, set either the <code class="docutils literal notranslate"><span class="pre">--log=&lt;file.json&gt;</span></code> or the <code class="docutils literal notranslate"><span class="pre">--log-auto</span></code> parameter.  The latter
+will automatically create a log-file in <code class="docutils literal notranslate"><span class="pre">log/&lt;lab&gt;-&lt;board&gt;-NNNN.json</span></code>, <code class="docutils literal notranslate"><span class="pre">NNNN</span></code> incrementing so
+old files are not overwritten.</p>
+<p>The log format is a stream of json objects.  To read it, you can use the <code class="docutils literal notranslate"><span class="pre">generators/logparser.py</span></code>
+module.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A json stream is <strong>not</strong> just a json file.  This means trying to parse the log-file as plain json
+will fail!  Use the provided log-parser instead.</p>
+</div>
+<div class="section" id="generators">
+<h2>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h2>
+<p>One use of the log is generating visualizations and statistics of a test run.  There are a few so
+called <em>generators</em> already included with tbot:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">generators/dot.py</span></code>: Generate a graphviz dot graph of the testcase hirarchy that was run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generators/htmllog.py</span></code>: Generate a html representation of the log that gives an overview
+of the occurences that happened during the run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generators/junit.py</span></code>: Convert the log to a <a class="reference external" href="https://junit.org/junit5/">JUnit</a> xml file which
+can be displayed by CI tools like Jenkins.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generators/messages.py</span></code>: A simple demo generator that just prints all message events.</p></li>
+</ul>
+</div>
+<div class="section" id="log-events">
+<h2>Log Events<a class="headerlink" href="#log-events" title="Permalink to this headline">¶</a></h2>
+<p>Log events are json objects.  Each one has at least the following fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;type&quot;</span></code>: An array that identifies the event type.  Events for similar occurences have a common
+prefix in the <code class="docutils literal notranslate"><span class="pre">type</span></code> array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code>: Time in seconds since the test run began.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;data&quot;</span></code>: An object with event specific elements.</p></li>
+</ul>
+<p>The following events are emitted by tbot (possibly incomplete):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;tc&quot;,</span> <span class="pre">&quot;begin&quot;]</span></code> - Testcase being called, <code class="docutils literal notranslate"><span class="pre">data</span></code> contains the <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;tc&quot;,</span> <span class="pre">&quot;end&quot;]</span></code> - Testcase ending, <code class="docutils literal notranslate"><span class="pre">data</span></code> holds the <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;duration&quot;</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">&quot;success&quot;</span></code> state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;cmd&quot;,</span> <span class="pre">&quot;&lt;machine-name&gt;&quot;]</span></code> - A command was issued on the specified machine.  <code class="docutils literal notranslate"><span class="pre">data</span></code> is filled
+with the <code class="docutils literal notranslate"><span class="pre">&quot;cmd&quot;</span></code> that was sent and its <code class="docutils literal notranslate"><span class="pre">&quot;stdout&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;msg&quot;,</span> <span class="pre">&quot;&lt;LEVEL&gt;&quot;]</span></code> - A log message at the specified level, <code class="docutils literal notranslate"><span class="pre">data</span></code> contains the <code class="docutils literal notranslate"><span class="pre">&quot;text&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;tbot&quot;,</span> <span class="pre">&quot;end&quot;]</span></code> - Emitted once after all testcases completed (or failed).  <code class="docutils literal notranslate"><span class="pre">data</span></code> knows about
+the total <code class="docutils literal notranslate"><span class="pre">&quot;duration&quot;</span></code> and overall <code class="docutils literal notranslate"><span class="pre">&quot;success&quot;</span></code>.</p></li>
+</ul>
+<p>More might be added in the future.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="migration.html" class="btn btn-neutral float-right" title="Migrating from tbot 0.7.1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="recipes.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

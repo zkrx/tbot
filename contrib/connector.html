@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot_contrib.connector &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot_contrib.swupdate" href="swupdate.html" />
+    <link rel="prev" title="tbot.tc - Builtin Testcases" href="../modules/tc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../modules/tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/contrib/connector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot_contrib.connector"></span><div class="section" id="tbot-contrib-connector">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code><a class="headerlink" href="#tbot-contrib-connector" title="Permalink to this headline">¶</a></h1>
+<p>A module containing various additional connectors for convenience.  These
+are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tbot_contrib.connector.conserver.ConserverConnector" title="tbot_contrib.connector.conserver.ConserverConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConserverConnector</span></code></a> - Console using <a class="reference external" href="https://www.conserver.com/">conserver</a>.</p></li>
+<li><p><a class="reference internal" href="#tbot_contrib.connector.pyserial.PyserialConnector" title="tbot_contrib.connector.pyserial.PyserialConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyserialConnector</span></code></a> - Console on localhost using <a class="reference external" href="https://github.com/pyserial/pyserial">pyserial</a>.</p></li>
+</ul>
+<dl class="py class">
+<dt id="tbot_contrib.connector.conserver.ConserverConnector">
+<em class="property">class </em><code class="sig-prename descclassname">tbot_contrib.connector.conserver.</code><code class="sig-name descname">ConserverConnector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mach</span><span class="p">:</span> <span class="n">tbot.machine.linux.linux_shell.LinuxShell</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot_contrib/connector/conserver.html#ConserverConnector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot_contrib.connector.conserver.ConserverConnector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.connector.common.ConsoleConnector</span></code></p>
+<p>Connect to a serial console using <a class="reference external" href="https://www.conserver.com/">conserver</a>.</p>
+<p>You can configure the device name using the <code class="docutils literal notranslate"><span class="pre">conserver_device</span></code> property.</p>
+<p><strong>Example</strong>: (board config)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+<span class="kn">from</span> <span class="nn">tbot_contrib.connector</span> <span class="kn">import</span> <span class="n">conserver</span>
+
+<span class="k">class</span> <span class="nc">MyBoard</span><span class="p">(</span><span class="n">conserver</span><span class="o">.</span><span class="n">ConserverConnector</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">Board</span><span class="p">):</span>
+    <span class="n">conserver_device</span> <span class="o">=</span> <span class="s2">&quot;ttyS0&quot;</span>
+
+<span class="n">BOARD</span> <span class="o">=</span> <span class="n">MyBoard</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mach</strong> (<a class="reference internal" href="../modules/machine_linux.html#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><em>LinuxShell</em></a>) – A cloneable lab-host machine.  The
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ConsoleConnector</span></code> will try to clone this machine’s
+connection and use that to connect to the board.  This means that
+you have to make sure you give the correct lab-host for your
+respecitive board to the constructor here.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="tbot_contrib.connector.conserver.ConserverConnector.conserver_device">
+<em class="property">abstract property </em><code class="sig-name descname">conserver_device</code><a class="headerlink" href="#tbot_contrib.connector.conserver.ConserverConnector.conserver_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Device name for conserver.</p>
+<p>This property is <strong>required</strong>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot_contrib.connector.conserver.ConserverConnector.conserver_master">
+<code class="sig-name descname">conserver_master</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#tbot_contrib.connector.conserver.ConserverConnector.conserver_master" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional name of the conserver master to connect to (<code class="docutils literal notranslate"><span class="pre">-M</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot_contrib.connector.conserver.ConserverConnector.conserver_command">
+<code class="sig-name descname">conserver_command</code><em class="property">: Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>List<span class="p">]</span></em><em class="property"> = 'console'</em><a class="headerlink" href="#tbot_contrib.connector.conserver.ConserverConnector.conserver_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Command to connect with conserver.</p>
+<p>Can be either a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> (single command name) or a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>
+(with added command-line args).  For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conserver_command</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">,</span> <span class="s2">&quot;-p1234&quot;</span><span class="p">,</span> <span class="s2">&quot;-n&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot_contrib.connector.conserver.ConserverConnector.conserver_forcerw">
+<code class="sig-name descname">conserver_forcerw</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></em><em class="property"> = True</em><a class="headerlink" href="#tbot_contrib.connector.conserver.ConserverConnector.conserver_forcerw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to force the console into read-write mode (<code class="docutils literal notranslate"><span class="pre">-f</span></code>).</p>
+<p>This is necessary for the case where a session is already attached to this
+console while tbot is running.  Otherwise, tbot will not be able to
+properly intercept the boot process and might fail for odd reasons.</p>
+<p>If you don’t want tbot to mess with an already running session, set this to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot_contrib.connector.pyserial.PyserialConnector">
+<em class="property">class </em><code class="sig-prename descclassname">tbot_contrib.connector.pyserial.</code><code class="sig-name descname">PyserialConnector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.linux_shell.LinuxShell<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot_contrib/connector/pyserial.html#PyserialConnector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot_contrib.connector.pyserial.PyserialConnector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.connector.connector.Connector</span></code></p>
+<p>Connect to a console connected to <strong>localhost</strong> (i.e. the host tbot is
+running on) using <a class="reference external" href="https://github.com/pyserial/pyserial">pyserial</a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyBoard</span><span class="p">(</span><span class="n">pyserial</span><span class="o">.</span><span class="n">PyserialConnector</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">Board</span><span class="p">):</span>
+    <span class="n">serial_port</span> <span class="o">=</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span>
+    <span class="n">baudrate</span> <span class="o">=</span> <span class="mi">57600</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="tbot_contrib.connector.pyserial.PyserialConnector.serial_port">
+<em class="property">abstract property </em><code class="sig-name descname">serial_port</code><a class="headerlink" href="#tbot_contrib.connector.pyserial.PyserialConnector.serial_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serial port to connect to.  Keep in mind that this path is <strong>not</strong> on
+the lab-host but on the localhost.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot_contrib.connector.pyserial.PyserialConnector.baudrate">
+<code class="sig-name descname">baudrate</code><em class="property"> = 115200</em><a class="headerlink" href="#tbot_contrib.connector.pyserial.PyserialConnector.baudrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Baudrate of the serial line.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="swupdate.html" class="btn btn-neutral float-right" title="tbot_contrib.swupdate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../modules/tc.html" class="btn btn-neutral float-left" title="tbot.tc - Builtin Testcases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

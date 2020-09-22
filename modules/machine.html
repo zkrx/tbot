@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.machine &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot.machine.linux" href="machine_linux.html" />
+    <link rel="prev" title="tbot.log" href="log.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-class">Base-Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initializers">Initializers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot.machine"></span><div class="section" id="tbot-machine">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code><a class="headerlink" href="#tbot-machine" title="Permalink to this headline">¶</a></h1>
+<p>Machines are tbot’s abstraction over the different computers it can interact
+with.  This includes the machine it is running on
+(<a class="reference internal" href="selectable.html#tbot.selectable.LocalLabHost" title="tbot.selectable.LocalLabHost"><code class="xref py py-class docutils literal notranslate"><span class="pre">LocalLabHost</span></code></a>), the lab-host
+(<a class="reference internal" href="selectable.html#tbot.selectable.LabHost" title="tbot.selectable.LabHost"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabHost</span></code></a>), the device-under-test, as U-Boot
+(<a class="reference internal" href="selectable.html#tbot.selectable.UBootMachine" title="tbot.selectable.UBootMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">UBootMachine</span></code></a>) and as Linux
+(<a class="reference internal" href="selectable.html#tbot.selectable.LinuxMachine" title="tbot.selectable.LinuxMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinuxMachine</span></code></a>).  Machines are composed of three
+different parts:</p>
+<ol class="arabic simple">
+<li><p>The <a class="reference internal" href="machine_connector.html#tbot.machine.connector.Connector" title="tbot.machine.connector.Connector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connector</span></code></a> which is responsible for
+establishing a connection to the machine.  This can happen in many different
+ways, for example using Paramiko, by opening a serial-console, etc…</p></li>
+<li><p>Optionally, any number of <a class="reference internal" href="#tbot.machine.Initializer" title="tbot.machine.Initializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Initializer</span></code></a> s.  These
+can, step by step, setup the channel into a state until the shell appears.
+Examples would be the <a class="reference internal" href="machine_board.html#tbot.machine.board.UBootAutobootIntercept" title="tbot.machine.board.UBootAutobootIntercept"><code class="xref py py-class docutils literal notranslate"><span class="pre">UBootAutobootIntercept</span></code></a>
+(catch the autoboot prompt and press a key) or the
+<a class="reference internal" href="machine_board.html#tbot.machine.board.LinuxBootLogin" title="tbot.machine.board.LinuxBootLogin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinuxBootLogin</span></code></a> (wait for the login prompt
+and then enter username &amp; password).</p></li>
+<li><p>The <a class="reference internal" href="machine_shell.html#tbot.machine.shell.Shell" title="tbot.machine.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shell</span></code></a> which defines how a testcase can
+interact with this machine.  Typically this is an interface of methods for
+running commands.</p></li>
+</ol>
+<p>Composition is done using multiple-inheritance, like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">connector</span><span class="p">,</span> <span class="n">linux</span>
+
+<span class="k">class</span> <span class="nc">MyLabHost</span><span class="p">(</span>
+    <span class="c1"># The connector:</span>
+    <span class="n">connector</span><span class="o">.</span><span class="n">ParamikoConnector</span><span class="p">,</span>
+
+    <span class="c1"># - No initializers here -</span>
+
+    <span class="c1"># The shell:</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># Options for the paramiko connector:</span>
+    <span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;78.79.32.85&quot;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;tbot-user&quot;</span>
+
+    <span class="c1"># We can override anything we like to customize it</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">workdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;/opt/tbot-</span><span class="si">{self.username}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Machines are used as context-managers.  This means you will later on
+instanciate the above machine like this (if you were to hardcode the machine.
+You should probably use tbot’s <a class="reference internal" href="../configuration.html#configuration"><span class="std std-ref">Configuration</span></a> mechanism instead):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">footest</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">MyLabHost</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+        <span class="c1"># Run a command:</span>
+        <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more information about the individual parts of a machine, take a look at
+<a class="reference internal" href="machine_connector.html#module-tbot.machine.connector" title="tbot.machine.connector"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a>, <a class="reference internal" href="#tbot.machine.Initializer" title="tbot.machine.Initializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.Initializer</span></code></a>, and
+<a class="reference internal" href="machine_shell.html#module-tbot.machine.shell" title="tbot.machine.shell"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a>.  Specifically for interacting with Linux
+machines, you should head over to <a class="reference internal" href="machine_linux.html#linux-shells"><span class="std std-ref">Linux Shells</span></a>.</p>
+<div class="section" id="base-class">
+<h2>Base-Class<a class="headerlink" href="#base-class" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.Machine">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.</code><code class="sig-name descname">Machine</code><a class="reference internal" href="../_modules/tbot/machine/machine.html#Machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.Machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>Base class for all machines.</p>
+<p>This class contains the necessary code to compose the different parts of a
+machine into a usable class.  You won’t need to use it directly in most
+cases as <a class="reference internal" href="machine_connector.html#tbot.machine.connector.Connector" title="tbot.machine.connector.Connector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Connector</span></code></a> and
+<a class="reference internal" href="machine_shell.html#tbot.machine.shell.Shell" title="tbot.machine.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shell</span></code></a> both inherit from it.</p>
+<dl class="py attribute">
+<dt id="tbot.machine.Machine.ch">
+<code class="sig-name descname">ch</code><em class="property">: tbot.machine.channel.channel.Channel</em><a class="headerlink" href="#tbot.machine.Machine.ch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Channel to communicate with this machine.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please refrain from interacting with the channel directly.  Instead,
+write a <a class="reference internal" href="machine_shell.html#tbot.machine.shell.Shell" title="tbot.machine.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shell</span></code></a> that wraps around the
+channel interaction.  That way, the state of the channel is only
+managed in a single place and you won’t have to deal with nasty bugs
+when multiple parties make assumptions about the state of the channel.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.Machine.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#tbot.machine.Machine.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this machine.</p>
+<p>By default, the name is derived from the class-name but you might want
+to customize it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.Machine.init">
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/machine.html#Machine.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.Machine.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>An optional hook that allows running some code after the machine is initialized.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FooUBoot</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;foo-u-boot&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;=&gt; &quot;</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;autoload&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;dhcp&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;serverip&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.1.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="initializers">
+<h2>Initializers<a class="headerlink" href="#initializers" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.Initializer">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.</code><code class="sig-name descname">Initializer</code><a class="reference internal" href="../_modules/tbot/machine/machine.html#Initializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.Initializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.machine.Machine</span></code></p>
+<p>Base-class for machine initializers.</p>
+<dl class="py method">
+<dt id="tbot.machine.Initializer._init_machine">
+<em class="property">abstract </em><code class="sig-name descname">_init_machine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; ContextManager<a class="reference internal" href="../_modules/tbot/machine/machine.html#Initializer._init_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.Initializer._init_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run this initializer.</p>
+<p>Implementations of this method can make use of <code class="docutils literal notranslate"><span class="pre">self.ch</span></code> as they will
+run after the connector has succeeded.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>More docs for this …</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine_linux.html" class="btn btn-neutral float-right" title="tbot.machine.linux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="log.html" class="btn btn-neutral float-left" title="tbot.log" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

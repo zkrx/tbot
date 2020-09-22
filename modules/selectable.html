@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.selectable &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot.tc - Builtin Testcases" href="tc.html" />
+    <link rel="prev" title="tbot.machine.channel" href="machine_channel.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/selectable.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot.selectable"></span><div class="section" id="tbot-selectable">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code><a class="headerlink" href="#tbot-selectable" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-tbot.selectable" title="tbot.selectable"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a> modules gets filled with the machines from
+selected configuration at startup.  The following placeholders exist (which
+will be replaced by proper machines):</p>
+<dl class="py attribute">
+<dt id="tbot.selectable.LabHost">
+<code class="sig-prename descclassname">tbot.selectable.</code><code class="sig-name descname">LabHost</code><a class="headerlink" href="#tbot.selectable.LabHost" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#tbot.selectable.LocalLabHost" title="tbot.selectable.LocalLabHost"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.selectable.LocalLabHost</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.selectable.LocalLabHost">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.selectable.</code><code class="sig-name descname">LocalLabHost</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/selectable.html#LocalLabHost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.selectable.LocalLabHost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.connector.common.SubprocessConnector</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.bash.Bash</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.lab.Lab</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ContextManager" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.ContextManager</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.selectable.Board">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.selectable.</code><code class="sig-name descname">Board</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lh</span><span class="p">:</span> <span class="n">tbot.machine.linux.lab.Lab</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/selectable.html#Board"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.selectable.Board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.board.Board</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.selectable.UBootMachine">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.selectable.</code><code class="sig-name descname">UBootMachine</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/selectable.html#UBootMachine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.selectable.UBootMachine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.uboot.UBootShell</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ContextManager" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.ContextManager</span></code></a></p>
+<p>Dummy type that will be replaced by the actual selected U-Boot machine at runtime.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.selectable.LinuxMachine">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.selectable.</code><code class="sig-name descname">LinuxMachine</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/selectable.html#LinuxMachine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.selectable.LinuxMachine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.linux.LinuxBootLogin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.linux_shell.LinuxShell</span></code>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ContextManager" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.ContextManager</span></code></a></p>
+<p>Dummy type that will be replaced by the actual selected Linux machine at runtime.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tc.html" class="btn btn-neutral float-right" title="tbot.tc - Builtin Testcases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine_channel.html" class="btn btn-neutral float-left" title="tbot.machine.channel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

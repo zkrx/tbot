@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Recipes &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logging" href="logging.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recipes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#testcase-on-lab-host">Testcase on lab-host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testcase-with-u-boot">Testcase with U-Boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testcase-with-linux-on-the-board">Testcase with Linux (on the board)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#powercycling-the-board">Powercycling the Board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soft-resetting-with-bmode-or-reset">(Soft-)Resetting with <code class="docutils literal notranslate"><span class="pre">bmode</span></code> or <code class="docutils literal notranslate"><span class="pre">reset</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-files-from-one-machine-to-another">Copy files from one machine to another</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Recipes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/recipes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <div class="section" id="recipes">
+<span id="id1"></span><h1>Recipes<a class="headerlink" href="#recipes" title="Permalink to this headline">¶</a></h1>
+<p>To make writing testcases as productive as possible, this page contains a number of examples which
+you can quickly copy and adapt to get your tests up and running.  These are:</p>
+<ol class="arabic simple">
+<li><p>Most common:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#recipe-lab"><span class="std std-ref">Testcase on lab-host</span></a></p></li>
+<li><p><a class="reference internal" href="#recipe-uboot"><span class="std std-ref">Testcase with U-Boot</span></a></p></li>
+<li><p><a class="reference internal" href="#recipe-linux"><span class="std std-ref">Testcase with Linux (on the board)</span></a></p></li>
+</ul>
+</li>
+<li><p>For board tests</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#recipe-powercycling"><span class="std std-ref">Powercycling the Board</span></a></p></li>
+<li><p><a class="reference internal" href="#recipe-soft-reset"><span class="std std-ref">(Soft-)Resetting with bmode or reset</span></a></p></li>
+</ul>
+</li>
+<li><p>For lab &amp; general</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#recipe-copy"><span class="std std-ref">Copy files from one machine to another</span></a></p></li>
+</ul>
+</li>
+</ol>
+<div class="section" id="testcase-on-lab-host">
+<span id="recipe-lab"></span><h2>Testcase on lab-host<a class="headerlink" href="#testcase-on-lab-host" title="Permalink to this headline">¶</a></h2>
+<p>A testcase that interacts with the lab should be able to take the LabHost
+as a parameter, so it won’t open a parallel connection each time.  For easily
+writing such testcases, tbot has the <a class="reference internal" href="modules/main.html#tbot.with_lab" title="tbot.with_lab"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_lab()</span></code></a> decorator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_lab</span>
+<span class="k">def</span> <span class="nf">testcase_with_lab</span><span class="p">(</span><span class="n">lh</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The decorator is syntactic sugar for acquiring the default selected lab-host
+if none was supplied as the first parameter.</p>
+</div>
+<div class="section" id="testcase-with-u-boot">
+<span id="recipe-uboot"></span><h2>Testcase with U-Boot<a class="headerlink" href="#testcase-with-u-boot" title="Permalink to this headline">¶</a></h2>
+<p>A testcase that interacts with U-Boot should be able to take the U-Boot
+machine as a paramter as long as it does not require the board to powercycle,
+etc.  Similar to the <a class="reference internal" href="modules/main.html#tbot.with_lab" title="tbot.with_lab"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_lab()</span></code></a> decorater, there is <a class="reference internal" href="modules/main.html#tbot.with_uboot" title="tbot.with_uboot"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_uboot()</span></code></a>,
+which will initialize the selected Board if no active U-Boot machine was given
+as a parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_uboot</span>
+<span class="k">def</span> <span class="nf">testcase_with_uboot</span><span class="p">(</span><span class="n">ub</span><span class="p">:</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testcase-with-linux-on-the-board">
+<span id="recipe-linux"></span><h2>Testcase with Linux (on the board)<a class="headerlink" href="#testcase-with-linux-on-the-board" title="Permalink to this headline">¶</a></h2>
+<p>A testcase that is supposed to be run on the boards linux should be able
+to take the board Linux machine as a paramter as long as it does not require
+powercycling, etc.  Again, there is a decorator: <a class="reference internal" href="modules/main.html#tbot.with_linux" title="tbot.with_linux"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_linux()</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_linux</span>
+<span class="k">def</span> <span class="nf">testcase_with_linux</span><span class="p">(</span><span class="n">lnx</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="powercycling-the-board">
+<span id="recipe-powercycling"></span><h2>Powercycling the Board<a class="headerlink" href="#powercycling-the-board" title="Permalink to this headline">¶</a></h2>
+<p>If a testcase requires powercycling, you should write your testcase like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_lab</span>
+<span class="k">def</span> <span class="nf">testcase_with_lab</span><span class="p">(</span><span class="n">lh</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">,</span>
+         <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_linux</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">lnx</span><span class="p">:</span>
+        <span class="c1"># First boot, do things</span>
+        <span class="o">...</span>
+
+    <span class="c1"># Powercycling now ...</span>
+
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">,</span>
+         <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_linux</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">lnx</span><span class="p">:</span>
+        <span class="c1"># Second boot, do things</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="soft-resetting-with-bmode-or-reset">
+<span id="recipe-soft-reset"></span><h2>(Soft-)Resetting with <code class="docutils literal notranslate"><span class="pre">bmode</span></code> or <code class="docutils literal notranslate"><span class="pre">reset</span></code><a class="headerlink" href="#soft-resetting-with-bmode-or-reset" title="Permalink to this headline">¶</a></h2>
+<p>In some tests, you might need to use <code class="docutils literal notranslate"><span class="pre">bmode</span></code> or <code class="docutils literal notranslate"><span class="pre">reset</span></code> to trigger a soft-reset without turning
+off power.  For these, you’ll want to use the following recipe:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">ub</span><span class="p">:</span>
+       <span class="c1"># Board is ready now, set everything up</span>
+       <span class="o">...</span>
+
+       <span class="c1"># Call bmode with ub.boot().  This will grant us the board&#39;s channel</span>
+       <span class="c1"># which we can now give to a new U-Boot machine</span>
+       <span class="n">ch</span> <span class="o">=</span> <span class="n">ub</span><span class="o">.</span><span class="n">boot</span><span class="p">(</span><span class="s2">&quot;bmode&quot;</span><span class="p">,</span> <span class="s2">&quot;emmc&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Restart U-Boot, this time giving it the channel from ub.boot()</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="k">as</span> <span class="n">ub</span><span class="p">:</span>
+       <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="copy-files-from-one-machine-to-another">
+<span id="recipe-copy"></span><h2>Copy files from one machine to another<a class="headerlink" href="#copy-files-from-one-machine-to-another" title="Permalink to this headline">¶</a></h2>
+<p>This is a very common use-case so tbot provides a builtin testcase for it:
+<a class="reference internal" href="modules/tc.html#tbot.tc.shell.copy" title="tbot.tc.shell.copy"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.tc.shell.copy()</span></code></a>.  Use it like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.tc</span> <span class="kn">import</span> <span class="n">shell</span>
+
+<span class="c1"># Copy a file from the selected lab-host to localhost</span>
+<span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">,</span>
+     <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_local</span><span class="p">()</span> <span class="k">as</span> <span class="n">lo</span><span class="p">:</span>
+
+    <span class="n">file_on_labhost</span> <span class="o">=</span> <span class="n">lh</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;etc&quot;</span> <span class="o">/</span> <span class="s2">&quot;shadow&quot;</span>
+    <span class="n">file_on_localhost</span> <span class="o">=</span> <span class="n">lh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;sneaky_stolen_passwords&quot;</span>
+
+    <span class="n">shell</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">file_on_labhost</span><span class="p">,</span> <span class="n">file_on_localhost</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logging.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

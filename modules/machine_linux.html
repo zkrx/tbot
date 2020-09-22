@@ -1,0 +1,1236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.machine.linux &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot.machine.board" href="machine_board.html" />
+    <link rel="prev" title="tbot.machine" href="machine.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-shells">Linux Shells</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#argument-types">Argument Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specials">Specials</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#runcommandproxy">RunCommandProxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paths">Paths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workdir">Workdir</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lab-host">Lab-Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#builder">Builder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#toolchains">Toolchains</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authenticators">Authenticators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/machine_linux.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot.machine.linux"></span><div class="section" id="tbot-machine-linux">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code><a class="headerlink" href="#tbot-machine-linux" title="Permalink to this headline">¶</a></h1>
+<p>This module contains utilities for interacting with linux hosts.  This includes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#linux-shells"><span class="std std-ref">Linux Shells</span></a></p></li>
+<li><p>tbot’s own path type: <a class="reference internal" href="#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Path</span></code></a></p></li>
+</ul>
+<div class="section" id="linux-shells">
+<span id="id1"></span><h2>Linux Shells<a class="headerlink" href="#linux-shells" title="Permalink to this headline">¶</a></h2>
+<p>The base-class <a class="reference internal" href="#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.LinuxShell</span></code></a> defines the common
+interface all linux-shells should provide.  This interface consists of the
+following methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.escape" title="tbot.machine.linux.LinuxShell.escape"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.escape()</span></code></a> - Escape args
+for the underlying shell.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.exec0" title="tbot.machine.linux.LinuxShell.exec0"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.exec0()</span></code></a> - Run command
+and ensure it succeeded.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.exec" title="tbot.machine.linux.LinuxShell.exec"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.exec()</span></code></a> - Run command and
+return output and return code.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.run" title="tbot.machine.linux.LinuxShell.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.run()</span></code></a> - Start a command
+and allow a testcase to interact with its stdio.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.test" title="tbot.machine.linux.LinuxShell.test"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.test()</span></code></a> - Run command and
+return boolean whether it succeeded.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.env" title="tbot.machine.linux.LinuxShell.env"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.env()</span></code></a> - Get/Set
+environment variables.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.subshell" title="tbot.machine.linux.LinuxShell.subshell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.subshell()</span></code></a> - Start a
+subshell environment.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.interactive" title="tbot.machine.linux.LinuxShell.interactive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lnx.interactive()</span></code></a> -
+Start an interactive session for this machine.</p></li>
+</ul>
+<p>And the following properties:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.username" title="tbot.machine.linux.LinuxShell.username"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lnx.username</span></code></a> - Current
+user.</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.fsroot" title="tbot.machine.linux.LinuxShell.fsroot"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lnx.fsroot</span></code></a> - Path to the
+file-system root (just for convenience).</p></li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.LinuxShell.workdir" title="tbot.machine.linux.LinuxShell.workdir"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lnx.workdir</span></code></a> - Path to a
+directory which testcases can store files in.</p></li>
+</ul>
+<p>tbot contains implementations of
+this interface for the following shells:</p>
+<dl class="py class">
+<dt id="tbot.machine.linux.Bash">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Bash</code><a class="reference internal" href="../_modules/tbot/machine/linux/bash.html#Bash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Bash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.linux_shell.LinuxShell</span></code></p>
+<p>Bourne-again shell.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.LinuxShell">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">LinuxShell</code><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="machine_shell.html#tbot.machine.shell.Shell" title="tbot.machine.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.shell.Shell</span></code></a></p>
+<p>Base-class for linux shells.</p>
+<p>This class defines the common interface for linux shells.</p>
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.escape">
+<em class="property">abstract </em><code class="sig-name descname">escape</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.escape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.escape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escape a string according to this shell’s escaping rules.</p>
+<p>If multiple arguments are given, <code class="docutils literal notranslate"><span class="pre">.escape()</span></code> returns a string
+containing each argument as a separate shell token.  This means:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="c1"># foo bar</span>
+
+<span class="n">bash</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">&quot;foo bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">)</span>
+<span class="c1"># &quot;foo bar&quot; baz</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – Arguments to be escaped.  See <a class="reference internal" href="#linux-argtypes"><span class="std std-ref">Argument Types</span></a> for details.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A string with quoted/escaped versions of the input arguments.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.exec">
+<em class="property">abstract </em><code class="sig-name descname">exec</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.exec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.exec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a command on this machine/shell.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">retcode</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">mach</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">retcode</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – The command as separate arguments per command-line
+token.  See <a class="reference internal" href="#linux-argtypes"><span class="std std-ref">Argument Types</span></a> for more info.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple with the return code of the command and its console
+output.  Note that the output is <code class="docutils literal notranslate"><span class="pre">stdout</span></code> and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> merged.
+It will also contain a trailing newline in most cases.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.exec0">
+<em class="property">abstract </em><code class="sig-name descname">exec0</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.exec0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.exec0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a command and assert its return code to be 0.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">mach</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+
+<span class="c1"># This will raise an exception!</span>
+<span class="n">mach</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;false&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – The command as separate arguments per command-line
+token.  See <a class="reference internal" href="#linux-argtypes"><span class="std std-ref">Argument Types</span></a> for more info.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The command’s console output.  Note that the output is
+<code class="docutils literal notranslate"><span class="pre">stdout</span></code> and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> merged.  It will also contain a trailing
+newline in most cases.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.test">
+<em class="property">abstract </em><code class="sig-name descname">test</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a command and return a boolean value whether it succeeded.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">lnx</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;which&quot;</span><span class="p">,</span> <span class="s2">&quot;dropbear&quot;</span><span class="p">):</span>
+    <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s2">&quot;Dropbear is installed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – The command as separate arguments per command-line
+token.  See <a class="reference internal" href="#linux-argtypes"><span class="std std-ref">Argument Types</span></a> for more info.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Boolean representation of commands success.  <code class="docutils literal notranslate"><span class="pre">True</span></code> if
+return code was <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.env">
+<em class="property">abstract </em><code class="sig-name descname">env</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.env"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.env" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or set an environment variable.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the value of a var</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the value of a var</span>
+<span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;DEBIAN_FRONTEND&quot;</span><span class="p">,</span> <span class="s2">&quot;noninteractive&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Environment variable name.</p></li>
+<li><p><strong>value</strong> (<a class="reference internal" href="#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>tbot.machine.linux.Path</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional value to set the
+variable to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Current (new) value of the environment variable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; ContextManager<span class="p">[</span>tbot.machine.linux.util.RunCommandProxy<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start an interactive command.</p>
+<p>Interactive commands are started in a context-manager.  Inside, direct
+interaction with the commands stdio is possible using a
+<a class="reference internal" href="#tbot.machine.linux.RunCommandProxy" title="tbot.machine.linux.RunCommandProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">RunCommandProxy</span></code></a>.  <strong>You must call one
+of the</strong> <code class="docutils literal notranslate"><span class="pre">terminate*()</span></code> <strong>methods before leaving the context!</strong>  The
+proxy object provides an interface similar to pexpect for inteaction
+(see the methods of the <a class="reference internal" href="machine_channel.html#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel"><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></a> class).</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lh</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span> <span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="n">exe</span><span class="p">)</span> <span class="k">as</span> <span class="n">gdb</span><span class="p">:</span>
+    <span class="c1"># Interact with gdb in this context</span>
+    <span class="c1"># Wait for gdb to start up</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span>
+
+    <span class="c1"># Better for automated interaction</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;set confirm off&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span>
+
+    <span class="c1"># Necessary so output is not clobbered with escape sequences</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;set style enabled off&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span>
+
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;break main&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span>
+
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;run&quot;</span><span class="p">)</span>
+    <span class="c1"># We have hit the breakpoint</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span>
+
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;info locals&quot;</span><span class="p">,</span> <span class="n">read_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">local_info</span> <span class="o">=</span> <span class="n">gdb</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;(gdb) &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">local_info</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">var</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; = &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local variable `</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">` has value `</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">`!&quot;</span><span class="p">)</span>
+
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;quit&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">terminate0</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.open_channel">
+<em class="property">abstract </em><code class="sig-name descname">open_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.channel.channel.Channel<a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.open_channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.open_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform this machine into a channel for something else by running a command.</p>
+<p>This is meant to be used for tools like <code class="docutils literal notranslate"><span class="pre">picocom</span></code> which connect the
+terminal to a serial console.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ch</span> <span class="o">=</span> <span class="n">lnx</span><span class="o">.</span><span class="n">open_channel</span><span class="p">(</span><span class="s2">&quot;picocom&quot;</span><span class="p">,</span> <span class="s2">&quot;-b&quot;</span><span class="p">,</span> <span class="s2">&quot;115200&quot;</span><span class="p">,</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
+
+<span class="c1"># You can now interact with the channel for the serial console directly</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="machine_channel.html#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel">tbot.machine.channel.Channel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.interactive">
+<em class="property">abstract </em><code class="sig-name descname">interactive</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.interactive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.interactive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start an interactive session on this machine.</p>
+<p>This method will connect tbot’s stdio to the machine’s channel so you
+can interactively run commands.  This method is used by the
+<code class="docutils literal notranslate"><span class="pre">interactive_lab</span></code> and <code class="docutils literal notranslate"><span class="pre">interactive_linux</span></code> testcases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.subshell">
+<em class="property">abstract </em><code class="sig-name descname">subshell</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">[</span>Self<span class="p">]</span><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>Self<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; ContextManager<span class="p">[</span>Self<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/linux_shell.html#LinuxShell.subshell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.LinuxShell.subshell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a subshell environment.</p>
+<p>Sometimes you need to isolate certain tests into their own shell
+environment.  This method returns a context manager which does this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;FOO&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">lnx</span><span class="o">.</span><span class="n">subshell</span><span class="p">():</span>
+    <span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;FOO&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;FOO&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span>
+</pre></div>
+</div>
+<p>You can also spawn a subshell with a custom command.  This can be used,
+for example, to elevate privileges or switch user:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not root right now</span>
+<span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;EUID&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span>
+
+<span class="k">with</span> <span class="n">lnx</span><span class="o">.</span><span class="n">subshell</span><span class="p">(</span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span> <span class="s2">&quot;-ni&quot;</span><span class="p">,</span> <span class="s2">&quot;bash&quot;</span><span class="p">,</span> <span class="s2">&quot;--norc&quot;</span><span class="p">,</span> <span class="s2">&quot;--noprofile&quot;</span><span class="p">):</span>
+    <span class="c1"># Root now!</span>
+    <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">lnx</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;EUID&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>tbot</em> expects the shell inside the subshell environment to be the
+<strong>same</strong> shell as outside.  This means, spawning a sudo environment
+which uses <code class="docutils literal notranslate"><span class="pre">zsh</span></code> instead of <code class="docutils literal notranslate"><span class="pre">bash</span></code> might lead to failures.</p>
+<p>For <em>bash</em>, please spawn a <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">--norc</span> <span class="pre">--noprofile</span></code> for best
+compatibility.</p>
+<p>For <em>ash</em>, an <code class="docutils literal notranslate"><span class="pre">ash</span></code> is good enough.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.username">
+<em class="property">property </em><code class="sig-name descname">username</code><a class="headerlink" href="#tbot.machine.linux.LinuxShell.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current username.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.fsroot">
+<em class="property">property </em><code class="sig-name descname">fsroot</code><a class="headerlink" href="#tbot.machine.linux.LinuxShell.fsroot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the filesystem root of this machine, for convenience.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">lnx</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;usr&quot;</span> <span class="o">/</span> <span class="s2">&quot;lib&quot;</span>
+<span class="k">assert</span> <span class="n">p</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.LinuxShell.workdir">
+<em class="property">property </em><code class="sig-name descname">workdir</code><a class="headerlink" href="#tbot.machine.linux.LinuxShell.workdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to a directory which testcases can use to store files in.</p>
+<p>If configured properly, tbot will make sure this directory exists.
+Testcases should be able to deal with corrupt or missing files in this
+directory.  Implementations should use <a class="reference internal" href="#tbot.machine.linux.Workdir" title="tbot.machine.linux.Workdir"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Workdir</span></code></a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the defaut implementation</span>
+<span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">workdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">xdg_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="argument-types">
+<span id="linux-argtypes"></span><h3>Argument Types<a class="headerlink" href="#argument-types" title="Permalink to this headline">¶</a></h3>
+<p>For a lot of methods defined in <a class="reference internal" href="#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinuxShell</span></code></a>, a
+special set of types can be given as arguments.  This protects against a lot of
+common errors.  The allowed types are:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> - Every string argument will be properly quoted so the shell
+picks it up as only one parameter.  Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello World!&quot;</span><span class="p">,</span> <span class="s2">&quot;Is this tbot?&quot;</span><span class="p">)</span>
+
+<span class="c1"># Will run:</span>
+<span class="c1">#    echo &quot;Hello World!&quot; &quot;Is this tbot?&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference internal" href="#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Path</span></code></a> - tbot’s path class keeps track of the
+machine the path is associated with.  This prevents you from accidentally
+using a path from one host on another.  The path class behaves like
+<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#module-pathlib" title="(in Python v3.8)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pathlib</span></code></a> paths, so you can do things like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tftpdir</span> <span class="o">=</span> <span class="n">lnx</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;var&quot;</span> <span class="o">/</span> <span class="s2">&quot;lib&quot;</span> <span class="o">/</span> <span class="s2">&quot;tftpboot&quot;</span>
+<span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span> <span class="n">tftpdir</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">tftpdir</span> <span class="o">/</span> <span class="s2">&quot;u-boot.bin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+    <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s2">&quot;Binary exists!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>“Specials”</strong> - Sometimes you will need special shell-syntax for certain
+operations, for example to redirect output of a command.  For these things,
+tbot provides special “tokens”.  The full list can be found in
+<a class="reference internal" href="#linux-specials"><span class="std std-ref">Specials</span></a>.  As an example, redirecting to a file works like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;dmesg&quot;</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">RedirStdout</span><span class="p">(</span><span class="n">lnx</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;kernel.log&quot;</span><span class="p">))</span>
+<span class="c1"># Will run:</span>
+<span class="c1">#    dmesg &gt;/tmp/tbot-wd/kernel.log</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="specials">
+<span id="linux-specials"></span><h3>Specials<a class="headerlink" href="#specials" title="Permalink to this headline">¶</a></h3>
+<p>Specials can be used as part of commands to use certain shell-syntaxes.  This
+can be used to chain multiple commands or to redirect output.</p>
+<dl class="py data">
+<dt id="tbot.machine.linux.AndThen">
+<code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">AndThen</code><a class="headerlink" href="#tbot.machine.linux.AndThen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chain commands using <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">linux</span><span class="o">.</span><span class="n">AndThen</span><span class="p">,</span> <span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="tbot.machine.linux.OrElse">
+<code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">OrElse</code><a class="headerlink" href="#tbot.machine.linux.OrElse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chain commands using <code class="docutils literal notranslate"><span class="pre">||</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="tbot.machine.linux.Then">
+<code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Then</code><a class="headerlink" href="#tbot.machine.linux.Then" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chain commands using <code class="docutils literal notranslate"><span class="pre">;</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="tbot.machine.linux.Pipe">
+<code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Pipe</code><a class="headerlink" href="#tbot.machine.linux.Pipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pipe the output of one command into another:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;dmesg&quot;</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Pipe</span><span class="p">,</span> <span class="s2">&quot;grep&quot;</span><span class="p">,</span> <span class="s2">&quot;usb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.RedirStdout">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">RedirStdout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/special.html#RedirStdout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RedirStdout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redirect <code class="docutils literal notranslate"><span class="pre">stdout</span></code> (<code class="docutils literal notranslate"><span class="pre">&gt;...</span></code>) to a file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.RedirStderr">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">RedirStderr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/special.html#RedirStderr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RedirStderr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redirect <code class="docutils literal notranslate"><span class="pre">stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">2&gt;...</span></code>) to a file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.RedirBoth">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">RedirBoth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/special.html#RedirBoth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RedirBoth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redirect both <code class="docutils literal notranslate"><span class="pre">stdout</span></code> and <code class="docutils literal notranslate"><span class="pre">stderr</span></code> (<code class="docutils literal notranslate"><span class="pre">2&gt;&amp;1</span> <span class="pre">&gt;...</span></code>) to a file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.Raw">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/special.html#Raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emits a raw string, bypassing shell quoting/escaping.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only use this if nothing else works!  <a class="reference internal" href="#tbot.machine.linux.Raw" title="tbot.machine.linux.Raw"><code class="xref py py-class docutils literal notranslate"><span class="pre">linux.Raw</span></code></a> can quickly lead to hard-to-find bugs.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="runcommandproxy">
+<h2>RunCommandProxy<a class="headerlink" href="#runcommandproxy" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.linux.RunCommandProxy">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">RunCommandProxy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chan</span><span class="p">:</span> <span class="n">tbot.machine.channel.channel.Channel</span></em>, <em class="sig-param"><span class="n">cmd_context</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><a class="reference internal" href="#tbot.machine.linux.RunCommandProxy" title="tbot.machine.linux.RunCommandProxy">RunCommandProxy</a><span class="p">, </span>Generator<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span>Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/util.html#RunCommandProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RunCommandProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.channel.channel.Channel</span></code></p>
+<p>Proxy for interacting with a running command.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">RunCommandProxy</span></code> is created with a context-manager and
+<a class="reference internal" href="#tbot.machine.linux.LinuxShell.run" title="tbot.machine.linux.LinuxShell.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LinuxShell.run()</span></code></a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lh</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span> <span class="n">lh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;a.out&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">gdb</span><span class="p">:</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;target remote 127.0.0.1:3333&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;load&quot;</span><span class="p">)</span>
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;mon reset halt&quot;</span><span class="p">)</span>
+
+    <span class="n">gdb</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;quit&quot;</span><span class="p">)</span>
+    <span class="n">gbd</span><span class="o">.</span><span class="n">terminate0</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">RunCommandProxy</span></code> has all methods of a <a class="reference internal" href="machine_channel.html#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel"><code class="xref py py-class docutils literal notranslate"><span class="pre">Channel</span></code></a>
+for interacting with the remote.  Additionally, a few more methods exist
+which are necessary to end a command’s invokation properly.  <strong>You must
+always call one of them before leaving the context-manager!</strong>  These methods are:</p>
+<dl class="py method">
+<dt id="tbot.machine.linux.RunCommandProxy.terminate0">
+<code class="sig-name descname">terminate0</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/linux/util.html#RunCommandProxy.terminate0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RunCommandProxy.terminate0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the command to end <strong>successfully</strong>.</p>
+<p>Asserts that the command returned with retcode 0.  If it did not, an
+exception is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Remaining output of the command until completion.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.RunCommandProxy.terminate">
+<code class="sig-name descname">terminate</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/util.html#RunCommandProxy.terminate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.RunCommandProxy.terminate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the command to end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple of return code and remaining output.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.CommandEndedException">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">CommandEndedException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">, </span>Match<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">b''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/util.html#CommandEndedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.CommandEndedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.channel.channel.DeathStringException</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.channel.channel.ChannelTakenException</span></code></p>
+<p>The command which was run (interactively) ended prematurely.</p>
+<p>This exception might be raised when reading from (or writing to) a
+<a class="reference internal" href="#tbot.machine.linux.RunCommandProxy" title="tbot.machine.linux.RunCommandProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">RunCommandProxy</span></code></a> and the remote command
+exited during the call.  You can catch the exception but after receiving
+it, no more interaction with the command is allowed except the final
+<a class="reference internal" href="#tbot.machine.linux.RunCommandProxy.terminate0" title="tbot.machine.linux.RunCommandProxy.terminate0"><code class="xref py py-meth docutils literal notranslate"><span class="pre">terminate0()</span></code></a> or
+<a class="reference internal" href="#tbot.machine.linux.RunCommandProxy.terminate" title="tbot.machine.linux.RunCommandProxy.terminate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">terminate()</span></code></a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lh</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;command&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">foo</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">foo</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="s2">&quot;$ &quot;</span><span class="p">)</span>
+            <span class="n">foo</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;echo some command&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">linux</span><span class="o">.</span><span class="n">CommandEndedException</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="n">foo</span><span class="o">.</span><span class="n">terminate0</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="paths">
+<h2>Paths<a class="headerlink" href="#paths" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.linux.Path">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">H</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.PurePosixPath</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></a></p>
+<p>A path that is associated with a tbot machine.</p>
+<p>A path can only be used with its associated host.  Using it with
+any other host will raise an exception and will be detected by
+a static typechecker.</p>
+<p>Apart from that, <code class="docutils literal notranslate"><span class="pre">Path</span></code> behaves like a <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.Path</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">mach</span><span class="p">,</span> <span class="s2">&quot;/foo/bar&quot;</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="s2">&quot;bar&quot;</span> <span class="o">/</span> <span class="s2">&quot;baz&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">p2</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">mach</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;mkdir&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+    <span class="n">mach</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;touch&quot;</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="k">elif</span> <span class="ow">not</span> <span class="n">p2</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p2</span><span class="si">}</span><span class="s2"> must be a normal file!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a new path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> (<a class="reference internal" href="#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><em>linux.LinuxShell</em></a>) – Host this path should be associated with</p></li>
+<li><p><strong>args</strong> – <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pathlib.PurePosixPath</span></code></a> constructor arguments</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.host">
+<em class="property">property </em><code class="sig-name descname">host</code><a class="headerlink" href="#tbot.machine.linux.Path.host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Host associated with this path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.stat">
+<code class="sig-name descname">stat</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/os.html#os.stat_result" title="(in Python v3.8)">os.stat_result</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the result of <code class="docutils literal notranslate"><span class="pre">stat</span></code> on this path.</p>
+<p>Tries to imitate the results of <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.stat" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pathlib.Path.stat()</span></code></a>, returns a
+<a class="reference external" href="https://docs.python.org/3/library/os.html#os.stat_result" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">os.stat_result</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.exists">
+<code class="sig-name descname">exists</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_dir">
+<code class="sig-name descname">is_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_file">
+<code class="sig-name descname">is_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a normal file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_symlink">
+<code class="sig-name descname">is_symlink</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_symlink"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_symlink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a symlink.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_block_device">
+<code class="sig-name descname">is_block_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_block_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_block_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a block device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_char_device">
+<code class="sig-name descname">is_char_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_char_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_char_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a character device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_fifo">
+<code class="sig-name descname">is_fifo</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_fifo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_fifo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a pipe(fifo).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.is_socket">
+<code class="sig-name descname">is_socket</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.is_socket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.is_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this path points to a unix domain-socket.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#tbot.machine.linux.Path.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent of this path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.glob">
+<code class="sig-name descname">glob</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pattern</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span>tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.glob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.glob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over this subtree and yield all existing files (of any
+kind, including directories) matching the given relative pattern.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ubootdir</span> <span class="o">=</span> <span class="n">lh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;u-boot&quot;</span>
+
+<span class="c1"># .glob() returns a list which can be iterated.</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ubootdir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;common/*.c&quot;</span><span class="p">):</span>
+    <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># To use the globs in another commandline (note the `*`!):</span>
+<span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">ubootdir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;common/*.c&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The glob pattern <strong>must not contain spaces or other special characters</strong>!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.write_text">
+<code class="sig-name descname">write_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">errors</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.write_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.write_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <code class="docutils literal notranslate"><span class="pre">data</span></code> into the file this path points to.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">lnx</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;foo.sh&quot;</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
+<span class="s1">#!/bin/sh</span>
+<span class="s1">set -e</span>
+
+<span class="s1">echo &quot;Hello tbot!&quot;</span>
+<span class="s1">ps ax</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">f</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;chmod&quot;</span><span class="p">,</span> <span class="s2">&quot;+x&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This string must contain ‘text’ in the sense that some control
+characters are not allowed.  Consult the documentation of
+<a class="reference internal" href="#tbot.machine.linux.LinuxShell.run" title="tbot.machine.linux.LinuxShell.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LinuxShell.run()</span></code></a> for
+details.</p>
+<p>Additionally, line-endings might be transformed according to the
+tty’s settings.  This function is not meant for byte-by-byte
+transfers, but for configuration files or small scripts.  If you
+want to transfer a blob or a larger file, consider using
+<a class="reference internal" href="tc.html#tbot.tc.shell.copy" title="tbot.tc.shell.copy"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.tc.shell.copy()</span></code></a> or (for small files)
+<a class="reference internal" href="#tbot.machine.linux.Path.write_bytes" title="tbot.machine.linux.Path.write_bytes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.write_bytes()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.read_text">
+<code class="sig-name descname">read_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">errors</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.read_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.read_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the contents of a <em>text</em> file, pointed to by this path.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is for ‘text’ content only as line-endings might not be
+transferred as contained in the file (Will always use a single
+<code class="docutils literal notranslate"><span class="pre">\n</span></code>).  If you want to transfer a file byte-by-byte, consider
+using <a class="reference internal" href="tc.html#tbot.tc.shell.copy" title="tbot.tc.shell.copy"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.tc.shell.copy()</span></code></a> instead.  For small files,
+<a class="reference internal" href="#tbot.machine.linux.Path.read_bytes" title="tbot.machine.linux.Path.read_bytes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.write_bytes()</span></code></a>
+might also be an option.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.write_bytes">
+<code class="sig-name descname">write_bytes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.write_bytes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.write_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write binary <code class="docutils literal notranslate"><span class="pre">data</span></code> into the file this path points to.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method ensures exact byte-by-byte transfer.  To do so, it
+encodes the data using base64 which makes console output less
+readable.  If you intend to transfer text data, please use
+<a class="reference internal" href="#tbot.machine.linux.Path.write_text" title="tbot.machine.linux.Path.write_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.write_text()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Path.read_bytes">
+<code class="sig-name descname">read_bytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><a class="reference internal" href="../_modules/tbot/machine/linux/path.html#Path.read_bytes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Path.read_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the contents of a file, pointed to by this path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method ensures exact byte-by-byte transfer.  To do so, it
+encodes the data using base64 which makes console output less
+readable.  If you intend to transfer text data, please use
+<a class="reference internal" href="#tbot.machine.linux.Path.read_text" title="tbot.machine.linux.Path.read_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Path.read_text()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="workdir">
+<h3>Workdir<a class="headerlink" href="#workdir" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="tbot.machine.linux.Workdir">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Workdir</code><a class="reference internal" href="../_modules/tbot/machine/linux/workdir.html#Workdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Workdir" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="tbot.machine.linux.Workdir.static">
+<em class="property">classmethod </em><code class="sig-name descname">static</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">H</span></em>, <em class="sig-param"><span class="n">pathstr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.workdir.Workdir<span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/workdir.html#Workdir.static"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Workdir.static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a workdir in a static location, described by <code class="docutils literal notranslate"><span class="pre">pathstr</span></code>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+    <span class="n">workdir</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;/tmp/tbot-my-workdir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Workdir.athome">
+<em class="property">classmethod </em><code class="sig-name descname">athome</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">H</span></em>, <em class="sig-param"><span class="n">subdir</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.workdir.Workdir<span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/workdir.html#Workdir.athome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Workdir.athome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a workdir below the current users home directory.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+    <span class="c1"># Use ~/tbot-foo-dir</span>
+    <span class="n">workdir</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">athome</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;tbot-foo-dir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>tbot will query the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> environment variable for the location of
+the current users home directory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Workdir.xdg_data">
+<em class="property">classmethod </em><code class="sig-name descname">xdg_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">H</span></em>, <em class="sig-param"><span class="n">subdir</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.workdir.Workdir<span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/workdir.html#Workdir.xdg_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Workdir.xdg_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a workdir in <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/tbot</span></code> (usually <code class="docutils literal notranslate"><span class="pre">~/.local/share/tbot</span></code>).</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+    <span class="c1"># Use ~/.local/share/tbot/foo-dir</span>
+    <span class="n">workdir</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">xdg_data</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;foo-dir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Workdir.xdg_runtime">
+<em class="property">classmethod </em><code class="sig-name descname">xdg_runtime</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">H</span></em>, <em class="sig-param"><span class="n">subdir</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.workdir.Workdir<span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/workdir.html#Workdir.xdg_runtime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Workdir.xdg_runtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a workdir in <code class="docutils literal notranslate"><span class="pre">$XDG_RUNTIME_DIR</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$XDG_RUNTIME_DIR</span></code> is meant for <em>non-essential runtime files and
+other file objects (such as sockets, named pipes, …)</em> as specified by
+the <a class="reference external" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG Base Directory Specification</a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+    <span class="c1"># Results in `$XDG_RUNTIME_DIR/tbot/tbot-pipes`</span>
+    <span class="n">workdir</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">xdg_runtime</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;tbot-pipes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="lab-host">
+<h2>Lab-Host<a class="headerlink" href="#lab-host" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.linux.Lab">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Lab</code><a class="reference internal" href="../_modules/tbot/machine/linux/lab.html#Lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.linux_shell.LinuxShell</span></code></p>
+<p>Mixin for marking a machine as a lab-host.</p>
+<dl class="py method">
+<dt id="tbot.machine.linux.Lab.build">
+<code class="sig-name descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.build.Builder<a class="reference internal" href="../_modules/tbot/machine/linux/lab.html#Lab.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Lab.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default build-host for this lab.</p>
+<p>If your lab does not contain a build-capable machine, just leave this
+method as is.  tbot will raise an exception if a testcase attempts
+accessing the build-host anyway.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="builder">
+<h2>Builder<a class="headerlink" href="#builder" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#tbot.machine.linux.Builder" title="tbot.machine.linux.Builder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code></a> mixin allows marking a machine as a build-host.  This
+means generic testcases like <code class="docutils literal notranslate"><span class="pre">uboot.build</span></code> can use it to automatically build projects.  For this
+to work, a build-host needs to specify which toolchains it has installed and where tbot can find
+them.</p>
+<dl class="py class">
+<dt id="tbot.machine.linux.Builder">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.</code><code class="sig-name descname">Builder</code><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#Builder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.linux_shell.LinuxShell</span></code></p>
+<p>Mixin to mark a machine as a build-host.</p>
+<p>You need to define the <code class="docutils literal notranslate"><span class="pre">toolchain()</span></code> method when using this mixin.  You
+can then use the <code class="docutils literal notranslate"><span class="pre">enable()</span></code> method to enable a toolchain and compile
+projects with it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">MyBuildHost</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">bh</span><span class="p">:</span>
+    <span class="n">bh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uptime&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">bh</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="s2">&quot;generic-armv7a-hf&quot;</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;CC&quot;</span><span class="p">)</span>
+        <span class="n">bh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="n">linux</span><span class="o">.</span><span class="n">Raw</span><span class="p">(</span><span class="n">cc</span><span class="p">),</span> <span class="s2">&quot;main.c&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you look closely, I have used <code class="docutils literal notranslate"><span class="pre">linux.Raw(cc)</span></code> in the <code class="docutils literal notranslate"><span class="pre">exec0()</span></code>
+call.  This is necessary because a lot of toolchains define <code class="docutils literal notranslate"><span class="pre">$CC</span></code> as
+something like</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CC=arm-poky-linux-gnueabi-gcc -march=armv7-a -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8
+</pre></div>
+</div>
+<p>where some parameters are already included.  Without the
+<a class="reference internal" href="#tbot.machine.linux.Raw" title="tbot.machine.linux.Raw"><code class="xref py py-class docutils literal notranslate"><span class="pre">linux.Raw</span></code></a>, tbot would run</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">CC</span><span class="si">}</span><span class="s2">&quot;</span> main.c
+</pre></div>
+</div>
+<p>where the arguments are interpreted as part of the path to the compiler.
+This will obviously fail so instead, with the <a class="reference internal" href="#tbot.machine.linux.Raw" title="tbot.machine.linux.Raw"><code class="xref py py-class docutils literal notranslate"><span class="pre">linux.Raw</span></code></a>,
+tbot will run</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="si">${</span><span class="nv">CC</span><span class="si">}</span> main.c
+</pre></div>
+</div>
+<p>where the shell expansion will do the right thing.</p>
+</div>
+<dl class="py method">
+<dt id="tbot.machine.linux.Builder.toolchains">
+<em class="property">abstract property </em><code class="sig-name descname">toolchains</code><a class="headerlink" href="#tbot.machine.linux.Builder.toolchains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of all toolchains that exist on this buildhost.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">toolchains</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">Toolchain</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;armv7a&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">DistroToolchain</span><span class="p">(</span><span class="s2">&quot;arm&quot;</span><span class="p">,</span> <span class="s2">&quot;arm-linux-gnueabi-&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;armv8&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">DistroToolchain</span><span class="p">(</span><span class="s2">&quot;aarch64&quot;</span><span class="p">,</span> <span class="s2">&quot;aarch64-linux-gnu-&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;mipsel&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">DistroToolchain</span><span class="p">(</span><span class="s2">&quot;mips&quot;</span><span class="p">,</span> <span class="s2">&quot;mipsel-linux-gnu-&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.linux.Builder.enable">
+<code class="sig-name descname">enable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#Builder.enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.Builder.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the toolchain for <code class="docutils literal notranslate"><span class="pre">arch</span></code> on this BuildHost instance.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lh</span><span class="o">.</span><span class="n">build</span><span class="p">()</span> <span class="k">as</span> <span class="n">bh</span><span class="p">:</span>
+    <span class="c1"># Now we are on the buildhost</span>
+
+    <span class="k">with</span> <span class="n">bh</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="s2">&quot;generic-armv7a-hf&quot;</span><span class="p">):</span>
+        <span class="c1"># Toolchain is enabled here</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">bh</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;CC&quot;</span><span class="p">)</span>
+        <span class="n">bh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="n">linux</span><span class="o">.</span><span class="n">Raw</span><span class="p">(</span><span class="n">cc</span><span class="p">),</span> <span class="s2">&quot;--version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tbot.machine.linux.build"></span><div class="section" id="toolchains">
+<h3>Toolchains<a class="headerlink" href="#toolchains" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="tbot.machine.linux.build.Toolchain">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.build.</code><code class="sig-name descname">Toolchain</code><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#Toolchain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.build.Toolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>Generic toolchain type.</p>
+<dl class="py method">
+<dt id="tbot.machine.linux.build.Toolchain.enable">
+<em class="property">abstract </em><code class="sig-name descname">enable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">tbot.machine.linux.build.Builder</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#Toolchain.enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.build.Toolchain.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable this toolchain on the given <code class="docutils literal notranslate"><span class="pre">host</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.build.DistroToolchain">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.build.</code><code class="sig-name descname">DistroToolchain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">prefix</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#DistroToolchain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.build.DistroToolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tbot.machine.linux.build.Toolchain" title="tbot.machine.linux.build.Toolchain"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.build.Toolchain</span></code></a></p>
+<p>Toolchain that was installed from distribution repositories.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">toolchains</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;armv7a&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">DistroToolchain</span><span class="p">(</span><span class="s2">&quot;arm&quot;</span><span class="p">,</span> <span class="s2">&quot;arm-linux-gnueabi-&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;armv8&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">DistroToolchain</span><span class="p">(</span><span class="s2">&quot;aarch64&quot;</span><span class="p">,</span> <span class="s2">&quot;aarch64-linux-gnu-&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.build.EnvScriptToolchain">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.build.</code><code class="sig-name descname">EnvScriptToolchain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/build.html#EnvScriptToolchain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.build.EnvScriptToolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tbot.machine.linux.build.Toolchain" title="tbot.machine.linux.build.Toolchain"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.build.Toolchain</span></code></a></p>
+<p>Toolchain that is initialized using an env script (e.g. yocto toolchain).</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">toolchains</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">yocto_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;opt&quot;</span> <span class="o">/</span> <span class="s2">&quot;poky&quot;</span> <span class="o">/</span> <span class="s2">&quot;2.6&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;cortexa8hf&quot;</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">EnvScriptToolchain</span><span class="p">(</span>
+            <span class="n">yocto_root</span> <span class="o">/</span> <span class="s2">&quot;environment-setup-cortexa8hf-neon-poky-linux-gnueabi&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Create a new EnvScriptToolchain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference internal" href="#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to the env script</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-tbot.machine.linux.auth"></span></div>
+</div>
+<div class="section" id="authenticators">
+<h2>Authenticators<a class="headerlink" href="#authenticators" title="Permalink to this headline">¶</a></h2>
+<p>For logging in via SSH using <a class="reference internal" href="machine_connector.html#tbot.machine.connector.ParamikoConnector" title="tbot.machine.connector.ParamikoConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamikoConnector</span></code></a> or
+<a class="reference internal" href="machine_connector.html#tbot.machine.connector.SSHConnector" title="tbot.machine.connector.SSHConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSHConnector</span></code></a>, tbot provides the following ‘authenticators’:</p>
+<dl class="py class">
+<dt id="tbot.machine.linux.auth.NoneAuthenticator">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.auth.</code><code class="sig-name descname">NoneAuthenticator</code><a class="reference internal" href="../_modules/tbot/machine/linux/auth.html#NoneAuthenticator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.auth.NoneAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.auth.AuthenticatorBase</span></code></p>
+<p>Most primitive authenticator.</p>
+<p>Tries not passing any specific credentials and hopes ssh-config already
+contains all necessary infos.  This is the default.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.auth.PrivateKeyAuthenticator">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.auth.</code><code class="sig-name descname">PrivateKeyAuthenticator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key_file</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath" title="(in Python v3.8)">pathlib.PurePath</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/auth.html#PrivateKeyAuthenticator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.auth.PrivateKeyAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.auth.AuthenticatorBase</span></code></p>
+<p>Authenticate using a private-key file.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySSHHost</span><span class="p">(</span><span class="n">connector</span><span class="o">.</span><span class="n">SSHConnector</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;foouser&quot;</span>
+    <span class="n">authenticator</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">PrivateKeyAuthenticator</span><span class="p">(</span><span class="s2">&quot;/home/foo/.ssh/id_rsa_foo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.linux.auth.PasswordAuthenticator">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.linux.auth.</code><code class="sig-name descname">PasswordAuthenticator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/linux/auth.html#PasswordAuthenticator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.linux.auth.PasswordAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.auth.AuthenticatorBase</span></code></p>
+<p>Authenticate using a password.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This method is very insecure and might lead to <strong>PASSWORDS BEING STOLEN</strong>.</p>
+</div>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySSHHost</span><span class="p">(</span><span class="n">connector</span><span class="o">.</span><span class="n">SSHConnector</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span>
+    <span class="n">authenticator</span> <span class="o">=</span> <span class="n">linux</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">PasswordAuthenticator</span><span class="p">(</span><span class="s2">&quot;hunter2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine_board.html" class="btn btn-neutral float-right" title="tbot.machine.board" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.html" class="btn btn-neutral float-left" title="tbot.machine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

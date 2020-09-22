@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Recipes" href="recipes.html" />
+    <link rel="prev" title="Quick Start" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lab-config">Lab Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#board-config">Board Config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#board-hardware-config">Board-Hardware Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#u-boot-config">U-Boot Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-from-u-boot-config">Linux (from U-Boot) Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-without-u-boot-config">Linux (without U-Boot) Config</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#initializing-a-machine">Initializing a Machine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>tbot has a configuration mechanism which allows selecting a board and lab from
+the commandline using the <code class="docutils literal notranslate"><span class="pre">-l</span></code> and <code class="docutils literal notranslate"><span class="pre">-b</span></code> switches.  The configuration files
+are just python scripts defining the classes for lab-host, board-hardware and
+board-software.</p>
+<div class="section" id="lab-config">
+<span id="config-lab"></span><h2>Lab Config<a class="headerlink" href="#lab-config" title="Permalink to this headline">¶</a></h2>
+<p>The lab config describes your “lab” setup which consists mostly of your
+lab-host, the machine from which you open the (serial-)connection to your
+board.  This is often directly your local computer in which case the
+config does not need to contain much or could be not necessary at all.
+But tbot also supports a lab-host which you connect to via SSH, for
+example.</p>
+<p>The lab can be selected using <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">lab-config.py</span></code> on the command-line and the
+selected lab will then be available to testcases by using the
+<a class="reference internal" href="modules/main.html#tbot.acquire_lab" title="tbot.acquire_lab"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_lab()</span></code></a> function.  The lab-config can be any Python file
+defining a lab-host machine.  To allow tbot to detect the machine, the python
+module should have a global <code class="docutils literal notranslate"><span class="pre">LAB</span></code> which points to the machine’s class.  For
+best compatibility, the lab-host machine should inherit from
+<a class="reference internal" href="modules/machine_linux.html#tbot.machine.linux.Lab" title="tbot.machine.linux.Lab"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Lab</span></code></a>.</p>
+<p>If your board is connected directly to your computer, you lab-host is your
+localhost.  The config (for simple cases you need none at all) might look
+like this:</p>
+<p><strong>Example (local)</strong>: <code class="docutils literal notranslate"><span class="pre">local-lab.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">connector</span><span class="p">,</span> <span class="n">linux</span><span class="p">,</span> <span class="n">board</span>
+
+<span class="k">class</span> <span class="nc">MyLabHost</span><span class="p">(</span>
+    <span class="n">connector</span><span class="o">.</span><span class="n">SubprocessConnector</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-lab&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">workdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;/work/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">/tbot-workdir&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tell tbot about the class by defining a global `LAB`</span>
+<span class="n">LAB</span> <span class="o">=</span> <span class="n">MyLabHost</span>
+</pre></div>
+</div>
+<p>In this instance, tbot will use localhost as the lab-host and store files
+in <code class="docutils literal notranslate"><span class="pre">/work/&lt;user&gt;/tbot-workdir</span></code>.  You could try out your config using:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tbot -l local-lab.py selftest_machine_labhost_shell
+</pre></div>
+</div>
+<p>Alternatively, your lab might be remote and you have to connect to it
+using SSH.  In that case, an example config might look like this:</p>
+<p><strong>Example (remote, ssh)</strong>: <code class="docutils literal notranslate"><span class="pre">ssh-lab.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">connector</span><span class="p">,</span> <span class="n">linux</span><span class="p">,</span> <span class="n">board</span>
+
+<span class="k">class</span> <span class="nc">MyLabHost</span><span class="p">(</span>
+    <span class="n">connector</span><span class="o">.</span><span class="n">ParamikoConnector</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-lab&quot;</span>
+
+    <span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;vlab.my-host.com&quot;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;ken&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">workdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">linux</span><span class="o">.</span><span class="n">Workdir</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;/work/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">/tbot-workdir&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tell tbot about the class by defining a global `LAB`</span>
+<span class="n">LAB</span> <span class="o">=</span> <span class="n">MyLabHost</span>
+</pre></div>
+</div>
+<p>For further information about the configurable options, look at the docs for
+the individual classes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="modules/machine_connector.html#tbot.machine.connector.ParamikoConnector" title="tbot.machine.connector.ParamikoConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.connector.ParamikoConnector</span></code></a></p></li>
+<li><p><a class="reference internal" href="modules/machine_linux.html#tbot.machine.linux.Bash" title="tbot.machine.linux.Bash"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Bash</span></code></a> (which is just a
+<a class="reference internal" href="modules/machine_linux.html#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.LinuxShell</span></code></a>)</p></li>
+<li><p><a class="reference internal" href="modules/machine_linux.html#tbot.machine.linux.Lab" title="tbot.machine.linux.Lab"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.Lab</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="board-config">
+<span id="config-board"></span><h2>Board Config<a class="headerlink" href="#board-config" title="Permalink to this headline">¶</a></h2>
+<p>The board configuration is split into two parts:  The first part configures the
+physical hardware and how to access it (called the <em>Board</em>) and the second part
+defines the software running on it.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>At the moment, both the hardware and the software config live in the same
+file.  We plan to (optionally) separate this in the future to allow even
+more generic configurations.</p>
+</div>
+<div class="section" id="board-hardware-config">
+<h3>Board-Hardware Config<a class="headerlink" href="#board-hardware-config" title="Permalink to this headline">¶</a></h3>
+<p>The hardware is configured as a machine which turns on the board when accessed
+and opens a serial-console.  It does not do any further interaction with the
+board, to not make any assumptions about the software running on it.</p>
+<p>Typically, the board config might look similar to this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">connector</span><span class="p">,</span> <span class="n">board</span>
+
+<span class="k">class</span> <span class="nc">MyBoard</span><span class="p">(</span>
+    <span class="n">connector</span><span class="o">.</span><span class="n">ConsoleConnector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">PowerControl</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">Board</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myboard&quot;</span>
+
+    <span class="k">def</span> <span class="nf">poweron</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;power-control.sh&quot;</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">poweroff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;power-control.sh&quot;</span><span class="p">,</span> <span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mach</span><span class="p">):</span>
+        <span class="c1"># Open the serial console</span>
+        <span class="k">return</span> <span class="n">mach</span><span class="o">.</span><span class="n">open_channel</span><span class="p">(</span><span class="s2">&quot;picocom&quot;</span><span class="p">,</span> <span class="s2">&quot;-b&quot;</span><span class="p">,</span> <span class="s2">&quot;115200&quot;</span><span class="p">,</span> <span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Similarl to the `LAB`, the board needs to be made available as `BOARD`</span>
+<span class="n">BOARD</span> <span class="o">=</span> <span class="n">MyBoard</span>
+</pre></div>
+</div>
+<p>This should be enough to allow accessing the board using the
+<code class="docutils literal notranslate"><span class="pre">interactive_board</span></code> testcase:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tbot -l lab-config.py -b board-config.py -vv interactive_board
+</pre></div>
+</div>
+<p>Next up, you need to configure the software running on your board.  If you have
+U-Boot and want to access it from testcases, continue to the next section:
+<a class="reference internal" href="#config-board-uboot"><span class="std std-ref">U-Boot Config</span></a>.  If you do not have U-Boot or you don’t need access
+to U-Boot from your testcases, you can jump to
+<a class="reference internal" href="#config-board-linux-standalone"><span class="std std-ref">Linux (without U-Boot) Config</span></a>.</p>
+</div>
+<div class="section" id="u-boot-config">
+<span id="config-board-uboot"></span><h3>U-Boot Config<a class="headerlink" href="#u-boot-config" title="Permalink to this headline">¶</a></h3>
+<p>U-Boot is configured as another machine ontop of the ‘hardware machine’.  It
+looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="k">class</span> <span class="nc">MyBoardUBoot</span><span class="p">(</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;=&gt; &quot;</span>
+
+<span class="c1"># Make visible to tbot:</span>
+<span class="n">UBOOT</span> <span class="o">=</span> <span class="n">MyBoardUBoot</span>
+</pre></div>
+</div>
+<p>If your U-Boot is configured with autoboot, you should also inherit the
+<a class="reference internal" href="modules/machine_board.html#tbot.machine.board.UBootAutobootIntercept" title="tbot.machine.board.UBootAutobootIntercept"><code class="xref py py-class docutils literal notranslate"><span class="pre">UBootAutobootIntercept</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="k">class</span> <span class="nc">MyBoardUBoot</span><span class="p">(</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">UBootAutobootIntercept</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;=&gt; &quot;</span>
+
+<span class="c1"># Make visible to tbot:</span>
+<span class="n">UBOOT</span> <span class="o">=</span> <span class="n">MyBoardUBoot</span>
+</pre></div>
+</div>
+<p>If everything is configured correctly, you should now be able to access the
+U-Boot shell using the <code class="docutils literal notranslate"><span class="pre">interactive_uboot</span></code> testcase:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tbot -l lab-config.py -b board-config.py -vv interactive_uboot
+</pre></div>
+</div>
+<p>In testcases, you can now access U-Boot by first acquiring the hardware using
+<a class="reference internal" href="modules/main.html#tbot.acquire_board" title="tbot.acquire_board"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_board()</span></code></a> and the acquiring U-Boot using
+<a class="reference internal" href="modules/main.html#tbot.acquire_uboot" title="tbot.acquire_uboot"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_uboot()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">footest</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">ub</span><span class="p">:</span>
+            <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux-from-u-boot-config">
+<h3>Linux (from U-Boot) Config<a class="headerlink" href="#linux-from-u-boot-config" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>This is a stub.  Look at the docs for <a class="reference internal" href="modules/machine_board.html#board-linux"><span class="std std-ref">Board Linux</span></a>,
+<a class="reference internal" href="modules/machine_board.html#tbot.machine.board.LinuxUbootConnector" title="tbot.machine.board.LinuxUbootConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.LinuxUbootConnector</span></code></a>, and
+<a class="reference internal" href="modules/machine_board.html#tbot.machine.board.LinuxBootLogin" title="tbot.machine.board.LinuxBootLogin"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.LinuxBootLogin</span></code></a> for now …</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BeagleBoneLinux</span><span class="p">(</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">LinuxUbootConnector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">LinuxBootLogin</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Bash</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">uboot</span> <span class="o">=</span> <span class="n">BeagleBoneUBoot</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">do_boot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ub</span><span class="p">:</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">channel</span><span class="o">.</span><span class="n">Channel</span><span class="p">:</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;serverip&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;netmask&quot;</span><span class="p">,</span> <span class="s2">&quot;255.255.0.0&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;ipaddr&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.1.2&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;mw&quot;</span><span class="p">,</span> <span class="s2">&quot;0x81000000&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;0x4000&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;tftp&quot;</span><span class="p">,</span> <span class="s2">&quot;0x81000000&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb/tbot/env.txt&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;env&quot;</span><span class="p">,</span> <span class="s2">&quot;import&quot;</span><span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;0x81000000&quot;</span><span class="p">)</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">env</span><span class="p">(</span><span class="s2">&quot;rootpath&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/core-image-lsb-sdk-generic-armv7a-hf&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ub</span><span class="o">.</span><span class="n">boot</span><span class="p">(</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="s2">&quot;netnfsboot&quot;</span><span class="p">)</span>
+
+
+<span class="n">UBOOT</span> <span class="o">=</span> <span class="n">BeagleBoneUBoot</span>
+<span class="n">LINUX</span> <span class="o">=</span> <span class="n">BeagleBoneLinux</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux-without-u-boot-config">
+<span id="config-board-linux-standalone"></span><h3>Linux (without U-Boot) Config<a class="headerlink" href="#linux-without-u-boot-config" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<p>This is a stub.  Look at the docs for <a class="reference internal" href="modules/machine_board.html#board-linux"><span class="std std-ref">Board Linux</span></a> and
+<a class="reference internal" href="modules/machine_board.html#tbot.machine.board.LinuxBootLogin" title="tbot.machine.board.LinuxBootLogin"><code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.board.LinuxBootLogin</span></code></a> for now …</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BeagleBoneLinux</span><span class="p">(</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">LinuxBootLogin</span><span class="p">,</span>
+    <span class="n">linux</span><span class="o">.</span><span class="n">Ash</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="n">LINUX</span> <span class="o">=</span> <span class="n">BeagleBoneLinux</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="initializing-a-machine">
+<span id="config-init"></span><h2>Initializing a Machine<a class="headerlink" href="#initializing-a-machine" title="Permalink to this headline">¶</a></h2>
+<p>After the basic setup sometimes you might need additional steps to bring the
+machine into the state you need it in.  Example might be network setup in
+U-Boot or disabling kernel console-logging in Linux.  You can do this by
+defining a <a class="reference internal" href="modules/machine.html#tbot.machine.Machine.init" title="tbot.machine.Machine.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tbot.machine.Machine.init()</span></code></a> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyBoardLinux</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Ash</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;myboard-lnx&quot;</span>
+
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;sysctl&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel.printk=1 4 1 4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recipes.html" class="btn btn-neutral float-right" title="Recipes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

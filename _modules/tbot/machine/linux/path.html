@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.machine.linux.path &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../../tbot.html">tbot</a> &raquo;</li>
+        
+      <li>tbot.machine.linux.path</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <h1>Source code for tbot.machine.linux.path</h1><div class="highlight"><pre>
+<span></span><span class="c1"># tbot, Embedded Automation Tool</span>
+<span class="c1"># Copyright (C) 2019  Harald Seiler</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">errno</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">linux</span>  <span class="c1"># noqa: F401</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;linux.LinuxShell&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Path"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path">[docs]</a><span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">PurePosixPath</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Generic</span><span class="p">[</span><span class="n">H</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A path that is associated with a tbot machine.</span>
+
+<span class="sd">    A path can only be used with its associated host.  Using it with</span>
+<span class="sd">    any other host will raise an exception and will be detected by</span>
+<span class="sd">    a static typechecker.</span>
+
+<span class="sd">    Apart from that, ``Path`` behaves like a :class:`pathlib.Path`::</span>
+
+<span class="sd">        from tbot.machine import linux</span>
+
+<span class="sd">        p = linux.Path(mach, &quot;/foo/bar&quot;)</span>
+<span class="sd">        p2 = p / &quot;bar&quot; / &quot;baz&quot;</span>
+<span class="sd">        if not p2.exists():</span>
+<span class="sd">            mach.exec0(&quot;mkdir&quot;, &quot;-p&quot;, p2.parent)</span>
+<span class="sd">            mach.exec0(&quot;touch&quot;, p2)</span>
+<span class="sd">        elif not p2.is_file():</span>
+<span class="sd">            raise Exception(f&quot;{p2} must be a normal file!&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_host&quot;</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="n">H</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Path&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new path instance.</span>
+
+<span class="sd">        :param linux.LinuxShell host: Host this path should be associated with</span>
+<span class="sd">        :param args: :py:class:`pathlib.PurePosixPath` constructor arguments</span>
+<span class="sd">        :rtype: Path</span>
+<span class="sd">        :returns: A path associated with host</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="n">H</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new path.</span>
+
+<span class="sd">        :param linux.LinuxShell host: Host this path should be associated with</span>
+<span class="sd">        :param args: :py:class:`pathlib.PurePosixPath` constructor arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host</span> <span class="o">=</span> <span class="n">host</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">host</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">H</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Host associated with this path.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host</span>
+
+<div class="viewcode-block" id="Path.stat"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.stat">[docs]</a>    <span class="k">def</span> <span class="nf">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">stat_result</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the result of ``stat`` on this path.</span>
+
+<span class="sd">        Tries to imitate the results of :meth:`pathlib.Path.stat`, returns a</span>
+<span class="sd">        :class:`os.stat_result`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ec</span><span class="p">,</span> <span class="n">stat_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;stat&quot;</span><span class="p">,</span> <span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ec</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t stat </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">stat_res</span> <span class="o">=</span> <span class="n">stat_str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_local_str</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">stat_result</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">7</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">11</span><span class="p">]),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="mi">12</span><span class="p">]),</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.exists"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.exists">[docs]</a>    <span class="k">def</span> <span class="nf">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path exists.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-e&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_dir"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_dir">[docs]</a>    <span class="k">def</span> <span class="nf">is_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a directory.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_file"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_file">[docs]</a>    <span class="k">def</span> <span class="nf">is_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a normal file.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_symlink"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_symlink">[docs]</a>    <span class="k">def</span> <span class="nf">is_symlink</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a symlink.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_block_device"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_block_device">[docs]</a>    <span class="k">def</span> <span class="nf">is_block_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a block device.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-b&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_char_device"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_char_device">[docs]</a>    <span class="k">def</span> <span class="nf">is_char_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a character device.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_fifo"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_fifo">[docs]</a>    <span class="k">def</span> <span class="nf">is_fifo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a pipe(fifo).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.is_socket"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.is_socket">[docs]</a>    <span class="k">def</span> <span class="nf">is_socket</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether this path points to a unix domain-socket.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;-S&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Path[H]&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Parent of this path.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Path.glob"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.glob">[docs]</a>    <span class="k">def</span> <span class="nf">glob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;typing.Iterator[Path[H]]&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterate over this subtree and yield all existing files (of any</span>
+<span class="sd">        kind, including directories) matching the given relative pattern.</span>
+
+<span class="sd">        **Example**:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            ubootdir = lh.workdir / &quot;u-boot&quot;</span>
+
+<span class="sd">            # .glob() returns a list which can be iterated.</span>
+<span class="sd">            for f in ubootdir.glob(&quot;common/*.c&quot;):</span>
+<span class="sd">                tbot.log.message(f&quot;Found {f}.&quot;)</span>
+
+<span class="sd">            # To use the globs in another commandline (note the `*`!):</span>
+<span class="sd">            lh.exec0(&quot;ls&quot;, &quot;-l&quot;, *ubootdir.glob(&quot;common/*.c&quot;))</span>
+
+<span class="sd">        .. warning::</span>
+
+<span class="sd">            The glob pattern **must not contain spaces or other special characters**!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fullpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_local_str</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">pattern</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;printf&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Raw</span><span class="p">(</span><span class="n">fullpath</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.write_text"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.write_text">[docs]</a>    <span class="k">def</span> <span class="nf">write_text</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">errors</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write ``data`` into the file this path points to.</span>
+
+<span class="sd">        **Example**:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            f = lnx.workdir / &quot;foo.sh&quot;</span>
+
+<span class="sd">            f.write_text(&#39;&#39;&#39;\\</span>
+<span class="sd">            #!/bin/sh</span>
+<span class="sd">            set -e</span>
+
+<span class="sd">            echo &quot;Hello tbot!&quot;</span>
+<span class="sd">            ps ax</span>
+<span class="sd">            &#39;&#39;&#39;)</span>
+
+<span class="sd">            f.exec0(&quot;chmod&quot;, &quot;+x&quot;, f)</span>
+
+<span class="sd">        .. warning::</span>
+
+<span class="sd">            This string must contain &#39;text&#39; in the sense that some control</span>
+<span class="sd">            characters are not allowed.  Consult the documentation of</span>
+<span class="sd">            :py:meth:`LinuxShell.run() &lt;tbot.machine.linux.LinuxShell.run&gt;` for</span>
+<span class="sd">            details.</span>
+
+<span class="sd">            Additionally, line-endings might be transformed according to the</span>
+<span class="sd">            tty&#39;s settings.  This function is not meant for byte-by-byte</span>
+<span class="sd">            transfers, but for configuration files or small scripts.  If you</span>
+<span class="sd">            want to transfer a blob or a larger file, consider using</span>
+<span class="sd">            :py:func:`tbot.tc.shell.copy` or (for small files)</span>
+<span class="sd">            :py:meth:`Path.write_bytes() &lt;tbot.machine.linux.Path.write_bytes&gt;`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;data must be str, not </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">byte_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span> <span class="ow">or</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span> <span class="ow">or</span> <span class="s2">&quot;strict&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="s2">&quot;tee&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">RedirStdout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;/dev/null&quot;</span><span class="p">)</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">ch</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ch</span><span class="o">.</span><span class="n">with_death_string</span><span class="p">(</span><span class="s2">&quot;tee: &quot;</span><span class="p">):</span>
+                <span class="n">ch</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">byte_data</span><span class="p">,</span> <span class="n">read_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="c1"># Send ^D twice if the file does not end with a line ending.  This</span>
+                <span class="c1"># is necessary to make `tee` notice the EOF correctly.</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">byte_data</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">byte_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="ow">in</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">]):</span>
+                    <span class="n">ch</span><span class="o">.</span><span class="n">sendcontrol</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+
+                <span class="n">ch</span><span class="o">.</span><span class="n">sendcontrol</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+                <span class="n">ch</span><span class="o">.</span><span class="n">terminate0</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">byte_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.read_text"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.read_text">[docs]</a>    <span class="k">def</span> <span class="nf">read_text</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the contents of a *text* file, pointed to by this path.</span>
+
+<span class="sd">        .. warning::</span>
+
+<span class="sd">            This method is for &#39;text&#39; content only as line-endings might not be</span>
+<span class="sd">            transferred as contained in the file (Will always use a single</span>
+<span class="sd">            ``\\n``).  If you want to transfer a file byte-by-byte, consider</span>
+<span class="sd">            using :py:func:`tbot.tc.shell.copy` instead.  For small files,</span>
+<span class="sd">            :py:meth:`Path.write_bytes() &lt;tbot.machine.linux.Path.read_bytes&gt;`</span>
+<span class="sd">            might also be an option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">errors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Encoding is not implemented for `read_text`&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.write_bytes"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.write_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">write_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write binary ``data`` into the file this path points to.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            This method ensures exact byte-by-byte transfer.  To do so, it</span>
+<span class="sd">            encodes the data using base64 which makes console output less</span>
+<span class="sd">            readable.  If you intend to transfer text data, please use</span>
+<span class="sd">            :py:meth:`Path.write_text() &lt;tbot.machine.linux.Path.write_text&gt;`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;data must be bytes, not </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="s2">&quot;base64&quot;</span><span class="p">,</span> <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
+            <span class="n">linux</span><span class="o">.</span><span class="n">Pipe</span><span class="p">,</span>
+            <span class="s2">&quot;tee&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">linux</span><span class="o">.</span><span class="n">RedirStdout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;/dev/null&quot;</span><span class="p">),</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">ch</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ch</span><span class="o">.</span><span class="n">with_death_string</span><span class="p">(</span><span class="s2">&quot;tee: &quot;</span><span class="p">):</span>
+                <span class="c1"># Encode as base64 and split into 76 character lines.  This makes</span>
+                <span class="c1"># output more readable and does not affect parsing on the remote</span>
+                <span class="c1"># end.</span>
+                <span class="n">encoded</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">chunk</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="mi">76</span><span class="p">))</span>
+
+                    <span class="k">if</span> <span class="n">chunk</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">:</span>
+                        <span class="k">break</span>
+
+                    <span class="n">ch</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">read_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="n">ch</span><span class="o">.</span><span class="n">sendcontrol</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+                <span class="n">ch</span><span class="o">.</span><span class="n">terminate0</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Path.read_bytes"><a class="viewcode-back" href="../../../../modules/machine_linux.html#tbot.machine.linux.Path.read_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">read_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the contents of a file, pointed to by this path.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            This method ensures exact byte-by-byte transfer.  To do so, it</span>
+<span class="sd">            encodes the data using base64 which makes console output less</span>
+<span class="sd">            readable.  If you intend to transfer text data, please use</span>
+<span class="sd">            :py:meth:`Path.read_text() &lt;tbot.machine.linux.Path.read_text&gt;`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Path[H]&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__truediv__</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_local_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="si">!r}</span><span class="s2">)&quot;</span>
+
+    <span class="c1"># __fspath__ does not make sense for tbot paths as they don&#39;t represent</span>
+    <span class="c1"># a path on the local filesystem.</span>
+    <span class="n">__fspath__</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

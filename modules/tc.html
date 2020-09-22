@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.tc - Builtin Testcases &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot_contrib.connector" href="../contrib/connector.html" />
+    <link rel="prev" title="tbot.selectable" href="selectable.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shell">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kconfig">Kconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#u-boot">U-Boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#u-boot-test-py">U-Boot test/py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/tc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot.tc"></span><div class="section" id="tbot-tc-builtin-testcases">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases<a class="headerlink" href="#tbot-tc-builtin-testcases" title="Permalink to this headline">¶</a></h1>
+<p>tbot come bundled with a few builtin testcases.  Here is an overview:</p>
+<div class="section" id="common">
+<h2>Common<a class="headerlink" href="#common" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="tbot.tc.testsuite">
+<code class="sig-prename descclassname">tbot.tc.</code><code class="sig-name descname">testsuite</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc.html#testsuite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.testsuite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a number of tests and report how many of them succeeded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> – Testcases</p></li>
+<li><p><strong>kwargs</strong> – Named-Arguments that should be given to each testcase.
+Be aware that this requires all testcases to have compatible
+signatures.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot</span> <span class="kn">import</span> <span class="n">tc</span><span class="p">,</span> <span class="n">machine</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">test_a</span><span class="p">(</span><span class="n">lab</span><span class="p">:</span> <span class="n">machine</span><span class="o">.</span><span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lab</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;Test&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">test_b</span><span class="p">(</span><span class="n">lab</span><span class="p">:</span> <span class="n">machine</span><span class="o">.</span><span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lab</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">all_tests</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+        <span class="n">tc</span><span class="o">.</span><span class="n">testsuite</span><span class="p">(</span>
+            <span class="n">test_a</span><span class="p">,</span>
+            <span class="n">test_b</span><span class="p">,</span>
+
+            <span class="n">lab</span><span class="o">=</span><span class="n">lh</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-tbot.tc.shell"></span></div>
+<div class="section" id="shell">
+<h2>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="tbot.tc.shell.copy">
+<code class="sig-prename descclassname">tbot.tc.shell.</code><code class="sig-name descname">copy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p1</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H1<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">p2</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H2<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/shell.html#copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.shell.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy a file, possibly from one host to another.</p>
+<p>The following transfers are currently supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">H</span></code> 🢥 <code class="docutils literal notranslate"><span class="pre">H</span></code> (transfer without changing host)</p></li>
+<li><p><strong>lab-host</strong> 🢥 <strong>ssh-machine</strong> (<a class="reference internal" href="machine_connector.html#tbot.machine.connector.SSHConnector" title="tbot.machine.connector.SSHConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSHConnector</span></code></a>, using <code class="docutils literal notranslate"><span class="pre">scp</span></code>)</p></li>
+<li><p><strong>ssh-machine</strong> 🢥 <strong>lab-host</strong> (Using <code class="docutils literal notranslate"><span class="pre">scp</span></code>)</p></li>
+<li><p><strong>local-host</strong> 🢥 <strong>paramiko-host</strong> (<a class="reference internal" href="machine_connector.html#tbot.machine.connector.ParamikoConnector" title="tbot.machine.connector.ParamikoConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamikoConnector</span></code></a>, using <code class="docutils literal notranslate"><span class="pre">scp</span></code>)</p></li>
+<li><p><strong>local-host</strong> 🢥 <strong>ssh-machine</strong> (<a class="reference internal" href="machine_connector.html#tbot.machine.connector.SSHConnector" title="tbot.machine.connector.SSHConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">SSHConnector</span></code></a>, using <code class="docutils literal notranslate"><span class="pre">scp</span></code>)</p></li>
+<li><p><strong>paramiko-host</strong>/<strong>ssh-machine</strong> 🢥 <strong>local-host</strong> (Using <code class="docutils literal notranslate"><span class="pre">scp</span></code>)</p></li>
+</ul>
+<p>The following transfers are <strong>not</strong> supported:</p>
+<ul class="simple">
+<li><p><strong>ssh-machine</strong> 🢥 <strong>ssh-machine</strong> (There is no guarantee that two remote hosts can
+connect to each other.  If you need this, transfer to the lab-host first
+and then to the other remote)</p></li>
+<li><p><strong>lab-host</strong> 🢥 <strong>board-machine</strong> (Transfers over serial are not (yet) implemented.
+To ‘upload’ files, connect to your target via ssh or use a tftp download)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Exisiting path to be copied</p></li>
+<li><p><strong>p2</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Target where <code class="docutils literal notranslate"><span class="pre">p1</span></code> should be copied</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.shell.check_for_tool">
+<code class="sig-prename descclassname">tbot.tc.shell.</code><code class="sig-name descname">check_for_tool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">tbot.machine.linux.linux_shell.LinuxShell</span></em>, <em class="sig-param"><span class="n">tool</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><a class="reference internal" href="../_modules/tbot/tc/shell.html#check_for_tool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.shell.check_for_tool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a certain tool/program is installed on a host.</p>
+<p>Results from previous invocations are cached.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">shell</span><span class="o">.</span><span class="n">check_for_tool</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;wget&quot;</span><span class="p">):</span>
+    <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;wget&quot;</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="s2">&quot;-O&quot;</span><span class="p">,</span> <span class="n">lh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;download.tgz&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">shell</span><span class="o">.</span><span class="n">check_for_tool</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="s2">&quot;curl&quot;</span><span class="p">):</span>
+    <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;curl&quot;</span><span class="p">,</span> <span class="n">download_url</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">lh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;download.tgz&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Need either &#39;wget&#39; or &#39;curl&#39;!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell"><em>linux.LinuxShell</em></a>) – The host to ceck on.</p></li>
+<li><p><strong>tool</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the binary to check for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the tool was found and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-tbot.tc.git"></span></div>
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.tc.git.GitRepository">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.tc.git.</code><code class="sig-name descname">GitRepository</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">url</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fetch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">rev</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.linux.path.Path</span></code></p>
+<p>Git repository.</p>
+<p>Initialize a git repository from either a remote or an existing repo.</p>
+<p>There are two modes in which a repo can be initialized:</p>
+<ol class="arabic simple">
+<li><p>Only supplying <code class="docutils literal notranslate"><span class="pre">target</span></code>: tbot assumes, that a repo exists at <code class="docutils literal notranslate"><span class="pre">target</span></code>
+already and will fail if this is not the case.</p></li>
+<li><p>Also supplying <code class="docutils literal notranslate"><span class="pre">url</span></code>: If <code class="docutils literal notranslate"><span class="pre">target</span></code> is not already a git repo, one will
+be created by cloning <code class="docutils literal notranslate"><span class="pre">url</span></code>.</p></li>
+</ol>
+<p>If <code class="docutils literal notranslate"><span class="pre">clean</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the repo will be hard reset and all untracked
+files/ changes will be removed. If <code class="docutils literal notranslate"><span class="pre">rev</span></code> is also given, it will be
+checked out.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">fetch</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">url</span></code> is given, the latest upstream revision
+will be checked out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Where the repository is supposed to be.</p></li>
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional remote url. Whether this is set specifies the
+mode the repo is initialized in.</p></li>
+<li><p><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to clean the working tree. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>fetch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to fetch remote. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>rev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional revision to checkout. Only has an effect if clean
+is also set. If you don’t want to clean, but still perform a checkout,
+call <a class="reference internal" href="#tbot.tc.git.GitRepository.checkout" title="tbot.tc.git.GitRepository.checkout"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkout()</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.6.1: </span><code class="docutils literal notranslate"><span class="pre">GitRepository</span></code> now fetches latest changes from remote by default.</p>
+</div>
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.git">
+<code class="sig-name descname">git</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.git"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.git" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a git subcommand.</p>
+<p>Behaves like calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">-C</span> <span class="pre">&lt;path/to/repo&gt;</span> <span class="pre">&lt;*args&gt;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – Command line parameters. First one should be a git subcommand.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Retcode and command output</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.git0">
+<code class="sig-name descname">git0</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><span class="p">, </span>tbot.machine.linux.special.Special<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.git0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.git0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a git subcommand and ensure its retcode is zero.</p>
+<p>Behaves like calling <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">-C</span> <span class="pre">&lt;path/to/repo&gt;</span> <span class="pre">&lt;*args&gt;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – Command line parameters. First one should be a git subcommand.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Command output</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>CommandFailedException</strong> – If the command exited with a non-zero return code</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.head">
+<em class="property">property </em><code class="sig-name descname">head</code><a class="headerlink" href="#tbot.tc.git.GitRepository.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current HEAD of this repo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.symbolic_head">
+<em class="property">property </em><code class="sig-name descname">symbolic_head</code><a class="headerlink" href="#tbot.tc.git.GitRepository.symbolic_head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current HEAD of this repo, as a symbolic if possible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.checkout">
+<code class="sig-name descname">checkout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rev</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.checkout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.checkout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checkout a revision or branch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Revision or branch name to be checked out.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">rev: str</em>, <em class="sig-param">mode: tbot.tc.git.ResetMode = &lt;ResetMode.MIXED: '--mixed'&gt;</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">--reset</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Revision to reset to</p></li>
+<li><p><strong>mode</strong> (<em>ResetMode</em>) – Reset mode to be used. Refer to the <code class="docutils literal notranslate"><span class="pre">git-reset</span></code>
+man-page for more info.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">force</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">untracked</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">noignore</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>force</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">-f</span></code></p></li>
+<li><p><strong>untracked</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">-d</span></code></p></li>
+<li><p><strong>noignore</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">-x</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Refer to the <code class="docutils literal notranslate"><span class="pre">git-clean</span></code> man-page for more info.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a file to the index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.commit">
+<code class="sig-name descname">commit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">author</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commit changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Commit message</p></li>
+<li><p><strong>author</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional commit author in the <code class="docutils literal notranslate"><span class="pre">Author</span> <span class="pre">Name</span> <span class="pre">&lt;email&#64;address&gt;</span></code>
+format.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.am">
+<code class="sig-name descname">am</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">patch</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.am"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.am" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply one or multiple patches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>patch</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Either a path to a <cite>.patch</cite> file or to a
+directory containing patch files.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Number of patches applied</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.apply">
+<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">patch</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.apply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply one or multiple patches to the working tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>patch</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Either a path to a <cite>.patch</cite> file or to a
+directory containing patch files.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Number of patches applied</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.6.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.git.GitRepository.bisect">
+<code class="sig-name descname">bisect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">good</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">test</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">…</span><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/tc/git.html#GitRepository.bisect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.git.GitRepository.bisect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a git bisect to find the commit that introduced an error.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add back the bisect example.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>good</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – A known good commit, the current head will be assumed as bad.</p></li>
+<li><p><strong>test</strong> – A function to check the state of the current commit.  Should return
+<code class="docutils literal notranslate"><span class="pre">True</span></code> if it is good and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is bad.  An exception is interpreded
+as an unexpected error while checking.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The first bad commit</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tbot.tc.kconfig"></span></div>
+<div class="section" id="kconfig">
+<h2>Kconfig<a class="headerlink" href="#kconfig" title="Permalink to this headline">¶</a></h2>
+<p>tbot has a few testcases to manipulate a kconfig-file, as used in Linux or U-Boot.  These are:</p>
+<dl class="py function">
+<dt id="tbot.tc.kconfig.enable">
+<code class="sig-prename descclassname">tbot.tc.kconfig.</code><code class="sig-name descname">enable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/kconfig.html#enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.kconfig.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable a kconfig option.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kconfig</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">repo</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIG_AUTO_COMPLETE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to kconfig file (usually .config)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the option (with leading <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.kconfig.module">
+<code class="sig-prename descclassname">tbot.tc.kconfig.</code><code class="sig-name descname">module</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/kconfig.html#module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.kconfig.module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a kconfig option to be built as module.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kconfig</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">repo</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIG_BLK_DEV_NVME&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to kconfig file (usually .config)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the option (with leading <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.kconfig.disable">
+<code class="sig-prename descclassname">tbot.tc.kconfig.</code><code class="sig-name descname">disable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/kconfig.html#disable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.kconfig.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable a kconfig option.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kconfig</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">repo</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIG_AUTO_COMPLETE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to kconfig file (usually .config)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the option (with leading <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.kconfig.set_string_value">
+<code class="sig-prename descclassname">tbot.tc.kconfig.</code><code class="sig-name descname">set_string_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/kconfig.html#set_string_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.kconfig.set_string_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a kconfig string value.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kconfig</span><span class="o">.</span><span class="n">set_string_value</span><span class="p">(</span><span class="n">repo</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIG_LOCALVERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;-test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to kconfig file (usually .config)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the option (with leading <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code>)</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – New string value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.kconfig.set_hex_value">
+<code class="sig-prename descclassname">tbot.tc.kconfig.</code><code class="sig-name descname">set_hex_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/kconfig.html#set_hex_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.kconfig.set_hex_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a kconfig hex value.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kconfig</span><span class="o">.</span><span class="n">set_hex_value</span><span class="p">(</span><span class="n">repo</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIG_SYS_BASE&quot;</span><span class="p">,</span> <span class="mh">0x10000</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Path to kconfig file (usually .config)</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the option (with leading <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code>)</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Integer value that should be set (will be converted to hex)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-tbot.tc.uboot"></span></div>
+<div class="section" id="u-boot">
+<h2>U-Boot<a class="headerlink" href="#u-boot" title="Permalink to this headline">¶</a></h2>
+<p>tbot has testcases to automatically build U-Boot for your board.  These integrate nicely with the
+<a class="reference internal" href="../configuration.html#config-board"><span class="std std-ref">Board Config</span></a>.</p>
+<dl class="py function">
+<dt id="tbot.tc.uboot.build">
+<code class="sig-prename descclassname">tbot.tc.uboot.</code><code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">builder</span><span class="p">:</span> <span class="n">typing.Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.uboot.UBootBuilder" title="tbot.tc.uboot.UBootBuilder">UBootBuilder</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">repo</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">unpatched_repo</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.path.Path<span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>BH<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lab</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.lab.Lab<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><a class="headerlink" href="#tbot.tc.uboot.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build U-Boot.</p>
+<p>There are a few ways this testcase can be called:</p>
+<ul class="simple">
+<li><p>From the commandline as <code class="docutils literal notranslate"><span class="pre">uboot_build</span></code> or in a testcase without
+any arguments:  tbot will use the configured build-host and builder
+config (see <a class="reference internal" href="#tbot.tc.uboot.UBootBuilder" title="tbot.tc.uboot.UBootBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UBootBuilder</span></code></a>) to attempt building
+U-Boot.  You can use the <code class="docutils literal notranslate"><span class="pre">clean</span></code> parameter to specify whether the
+build should reuse existing artifacts or start from scratch.</p></li>
+<li><p>Specifying just the <code class="docutils literal notranslate"><span class="pre">lab</span></code> parameter:  Use <code class="docutils literal notranslate"><span class="pre">lab</span></code> as the lab-host
+from where tbot should connect to its default build-host.</p></li>
+<li><p>Specifying just the <code class="docutils literal notranslate"><span class="pre">host</span></code> parameter:  Build U-Boot on <code class="docutils literal notranslate"><span class="pre">host</span></code>.</p></li>
+<li><p>Just the <code class="docutils literal notranslate"><span class="pre">path</span></code> parameter:  Checkout U-Boot to <code class="docutils literal notranslate"><span class="pre">path</span></code> on <code class="docutils literal notranslate"><span class="pre">path</span></code>’s
+associated host (which must be a build-host).</p></li>
+<li><p>Only the <code class="docutils literal notranslate"><span class="pre">unpatched_repo</span></code>:  Apply the patch step onto an already
+checked out revision before attempting the build.</p></li>
+<li><p>Just the <code class="docutils literal notranslate"><span class="pre">repo</span></code> parameter:  Use the already checked-out revision
+that is assumed to already have necessary patches applied.</p></li>
+</ul>
+<p>In any case, tbot will attempt building U-Boot and if it succeeded,
+the testcase will return the git repo.  Depending on the way it was called,
+it will skip certain steps (See list above).  This can be used to build
+eg. with a pre-configured checkout or build in a bisect-run.</p>
+<p>You can only specify one of <code class="docutils literal notranslate"><span class="pre">repo</span></code>, <code class="docutils literal notranslate"><span class="pre">unpatched_repo</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">host</span></code>
+or <code class="docutils literal notranslate"><span class="pre">lab</span></code>!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether the U-Boot tree should be cleand of all leftovers
+from previous builds.</p></li>
+<li><p><strong>repo</strong> (<a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository"><em>git.GitRepository</em></a>) – Build from existing, checkout-out revision.</p></li>
+<li><p><strong>unpatched_repo</strong> (<a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository"><em>git.GitRepository</em></a>) – Build from existing, checkout-out revision,
+but also apply patches.</p></li>
+<li><p><strong>path</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Checkout U-Boot to <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p></li>
+<li><p><strong>host</strong> (<em>linux.BuildMachine</em>) – Build U-Boot on this host.</p></li>
+<li><p><strong>lab</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Lab" title="tbot.machine.linux.Lab"><em>linux.Lab</em></a>) – Build U-Boot on the default build-host of this lab.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">git.GitRepository</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Location of the U-Boot tree containing build artifacts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.tc.uboot.checkout">
+<code class="sig-prename descclassname">tbot.tc.uboot.</code><code class="sig-name descname">checkout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">builder</span><span class="p">:</span> <span class="n">typing.Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.uboot.UBootBuilder" title="tbot.tc.uboot.UBootBuilder">UBootBuilder</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">rev</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>H<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>H<span class="p">]</span><a class="headerlink" href="#tbot.tc.uboot.checkout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just checkout and patch a version of U-Boot without attempting to build it.</p>
+<p>This function can either be called with <code class="docutils literal notranslate"><span class="pre">path</span></code> which will make it checkout
+U-Boot to <code class="docutils literal notranslate"><span class="pre">path</span></code> or with <code class="docutils literal notranslate"><span class="pre">host</span></code>, which will checkout U-Boot to the path
+defined in <a class="reference internal" href="#tbot.tc.uboot.UBootBuilder.do_repo_path" title="tbot.tc.uboot.UBootBuilder.do_repo_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">do_repo_path()</span></code></a>.</p>
+<p>Only on of <code class="docutils literal notranslate"><span class="pre">path</span></code> or <code class="docutils literal notranslate"><span class="pre">host</span></code> is allowed!</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.tc.uboot.UBootBuilder">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.tc.uboot.</code><code class="sig-name descname">UBootBuilder</code><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<p>U-Boot build process description.</p>
+<p>You will usually define it in your board config like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyUBootBuilder</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">tc</span><span class="o">.</span><span class="n">uboot</span><span class="o">.</span><span class="n">UBootBuilder</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-board&quot;</span>
+    <span class="n">defconfig</span> <span class="o">=</span> <span class="s2">&quot;myboard_defconfig&quot;</span>
+    <span class="n">toolchain</span> <span class="o">=</span> <span class="s2">&quot;generic-armv7a-hf&quot;</span>
+</pre></div>
+</div>
+<p>To make tbot aware of this config, you need to tell it in your
+U-Boot config:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyUBootMachine</span><span class="p">(</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># Create a builder instance</span>
+    <span class="n">build</span> <span class="o">=</span> <span class="n">MyUBootBuilder</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you’ve done everything correctly, calling the <code class="docutils literal notranslate"><span class="pre">uboot_checkout</span></code>
+or <code class="docutils literal notranslate"><span class="pre">uboot_build</span></code> testcases should then checkout and build U-Boot
+for your board!</p>
+<p>You can also manually trigger the checkout/build of a certain
+builder using the <a class="reference internal" href="#tbot.tc.uboot.UBootBuilder.checkout" title="tbot.tc.uboot.UBootBuilder.checkout"><code class="xref py py-meth docutils literal notranslate"><span class="pre">checkout()</span></code></a>
+and <a class="reference internal" href="#tbot.tc.uboot.UBootBuilder.build" title="tbot.tc.uboot.UBootBuilder.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">build()</span></code></a> methods.</p>
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.name">
+<em class="property">abstract property </em><code class="sig-name descname">name</code><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot.tc.uboot.UBootBuilder.remote">
+<code class="sig-name descname">remote</code><em class="property"> = 'https://gitlab.denx.de/u-boot/u-boot.git'</em><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.remote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where to fetch U-Boot from.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot.tc.uboot.UBootBuilder.revision">
+<code class="sig-name descname">revision</code><em class="property"> = None</em><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.revision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optionally, which revision to check out.  Can be any branch, tag, or commit.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot.tc.uboot.UBootBuilder.defconfig">
+<code class="sig-name descname">defconfig</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.defconfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defconfig for this board.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tbot.tc.uboot.UBootBuilder.toolchain">
+<code class="sig-name descname">toolchain</code><em class="property">: Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></em><em class="property"> = None</em><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.toolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the toolchain to be used.</p>
+<p>Must exist on the selected build-host.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_repo_path">
+<code class="sig-name descname">do_repo_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bh</span><span class="p">:</span> <span class="n">H</span></em><span class="sig-paren">)</span> &#x2192; tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_repo_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_repo_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step that defines where the U-Boot build-directory is.</p>
+<p>The default path is <code class="docutils literal notranslate"><span class="pre">$workdir/uboot-$name</span></code>.  Overwrite this
+step to set a custom path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_repo_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bh</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">Builder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">linux</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">bh</span><span class="o">.</span><span class="n">workdir</span> <span class="o">/</span> <span class="s2">&quot;projects&quot;</span> <span class="o">/</span> <span class="s2">&quot;foo&quot;</span> <span class="o">/</span> <span class="s2">&quot;uboot&quot;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bh</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Builder" title="tbot.machine.linux.Builder"><em>linux.Builder</em></a>) – Selected build-host.  The returned
+path <strong>must</strong> be associated with this machine.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path">linux.Path</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Path to the U-Boot build directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_checkout">
+<code class="sig-name descname">do_checkout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span><span class="p">:</span> <span class="n">tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span></em>, <em class="sig-param"><span class="n">rev</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_checkout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_checkout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step that defines how to checkout U-Boot.</p>
+<p>Overwrite this step if you have a custom checkout procedure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">clean</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">git</span><span class="o">.</span><span class="n">GitRepository</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">git</span><span class="o">.</span><span class="n">GitRepository</span><span class="p">(</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span>
+        <span class="n">clean</span><span class="o">=</span><span class="n">clean</span><span class="p">,</span>
+        <span class="n">rev</span><span class="o">=</span><span class="s2">&quot;v2018.09&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Path" title="tbot.machine.linux.Path"><em>linux.Path</em></a>) – Where to checkout U-Boot to.  This build-step
+must be able to deal with an already checked out U-Boot source.</p></li>
+<li><p><strong>clean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether this build-step should clean the source-dir
+(like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-fdx</span></code>).</p></li>
+<li><p><strong>rev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Revision to check out, or None to use the current
+revision.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A git repo of the checked out U-Boot sources</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_patch">
+<code class="sig-name descname">do_patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">repo</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>H<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step to patch the checked out U-Boot tree.</p>
+<p>If you need to apply patches ontop of upstream U-Boot, you should do
+so in this step:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">repo</span><span class="p">:</span> <span class="n">git</span><span class="o">.</span><span class="n">GitRepository</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">repo</span><span class="o">.</span><span class="n">am</span><span class="p">(</span><span class="n">linux</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">repo</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="s2">&quot;/path/to/patches&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_toolchain">
+<code class="sig-name descname">do_toolchain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bh</span><span class="p">:</span> <span class="n">BH</span></em><span class="sig-paren">)</span> &#x2192; ContextManager<a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_toolchain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_toolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step to enable the toolchain.</p>
+<p>This step should return a context-manager for a sub-shell which has
+the toolchain enabled.  By default this step returns
+<code class="docutils literal notranslate"><span class="pre">bh.enable(self.toolchain)</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_configure">
+<code class="sig-name descname">do_configure</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bh</span><span class="p">:</span> <span class="n">BH</span></em>, <em class="sig-param"><span class="n">repo</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_configure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step to generate the build configuration.</p>
+<p>By default, this steps runs <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">${self.defconfig}</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.do_build">
+<code class="sig-name descname">do_build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bh</span><span class="p">:</span> <span class="n">BH</span></em>, <em class="sig-param"><span class="n">repo</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.do_build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.do_build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build-Step to actually build U-Boot.</p>
+<p>By default, this steps runs <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">$(nproc)</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.checkout">
+<code class="sig-name descname">checkout</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.path.Path<span class="p">[</span>H<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>H<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>H<span class="p">]</span><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.checkout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.checkout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just checkout and patch a version of U-Boot without attempting to build it.</p>
+<p>See <a class="reference internal" href="#tbot.tc.uboot.checkout" title="tbot.tc.uboot.checkout"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.tc.uboot.checkout()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.tc.uboot.UBootBuilder.build">
+<code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">clean</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">repo</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">unpatched_repo</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.path.Path<span class="p">[</span>BH<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>BH<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lab</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.lab.Lab<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.tc.git.GitRepository" title="tbot.tc.git.GitRepository">tbot.tc.git.GitRepository</a><span class="p">[</span>BH<span class="p">]</span><a class="reference internal" href="../_modules/tbot/tc/uboot/build.html#UBootBuilder.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.UBootBuilder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build U-Boot.</p>
+<p>See <a class="reference internal" href="#tbot.tc.uboot.build" title="tbot.tc.uboot.build"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.tc.uboot.build()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="u-boot-test-py">
+<h2>U-Boot test/py<a class="headerlink" href="#u-boot-test-py" title="Permalink to this headline">¶</a></h2>
+<p>tbot can also run <a class="reference external" href="https://gitlab.denx.de/u-boot/u-boot/-/tree/master/test%2Fpy">U-Boot’s test/py</a> when U-Boot building is properly
+configured.  The <code class="docutils literal notranslate"><span class="pre">uboot_testpy</span></code> testcase is used for this:</p>
+<dl class="py function">
+<dt id="tbot.tc.uboot.testpy">
+<code class="sig-prename descclassname">tbot.tc.uboot.</code><code class="sig-name descname">testpy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lh</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.lab.Lab<span class="p">]</span></span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">build_host</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.machine.linux.build.Builder<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uboot_builder</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>tbot.tc.uboot.build.UBootBuilder<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">boardenv</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">testpy_args</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">[]</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/tc/uboot/testpy.html#testpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.tc.uboot.testpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run U-Boot’s test/py test-framework against the selected board.</p>
+<p>This testcase can be called from the command-line as <code class="docutils literal notranslate"><span class="pre">uboot_testpy</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>build_host</strong> (<a class="reference internal" href="machine_linux.html#tbot.machine.linux.Builder" title="tbot.machine.linux.Builder"><em>tbot.machine.linux.Builder</em></a>) – Optional build-host where
+U-Boot should be built (and in this case, where test/py will run).  By
+default, <code class="docutils literal notranslate"><span class="pre">tbot.acquire_lab().build()</span></code> is used.</p></li>
+<li><p><strong>uboot_builder</strong> (<a class="reference internal" href="#tbot.tc.uboot.UBootBuilder" title="tbot.tc.uboot.UBootBuilder"><em>tbot.tc.uboot.UBootBuilder</em></a>) – Optional configuration for
+U-Boot checkout.  By default, <code class="docutils literal notranslate"><span class="pre">tbot.acquire_uboot().build</span></code> is used
+(exactly like <code class="docutils literal notranslate"><span class="pre">uboot_build</span></code> does).</p></li>
+<li><p><strong>boardenv</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional contents for the <code class="docutils literal notranslate"><span class="pre">boardenv.py</span></code> file.  If
+this option is not given, <code class="docutils literal notranslate"><span class="pre">UBootBuilder.testpy_boardenv</span></code> is used (or
+nothing).</p></li>
+<li><p><strong>testpy_args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em>) – Additional arguments to be passed to test/py.
+Can be used, for example, to limit which tests should be run (using
+<code class="docutils literal notranslate"><span class="pre">testpy_args=[&quot;-k&quot;,</span> <span class="pre">&quot;sf&quot;]</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example</strong>:</p>
+<p>The following additions to a board-config make it possible to call
+<code class="docutils literal notranslate"><span class="pre">tbot</span> <span class="pre">...</span> <span class="pre">-vv</span> <span class="pre">uboot_testpy</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.tc</span> <span class="kn">import</span> <span class="n">uboot</span>
+
+<span class="k">class</span> <span class="nc">DHComUBootBuilder</span><span class="p">(</span><span class="n">uboot</span><span class="o">.</span><span class="n">UBootBuilder</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;dhcom-pdk2&quot;</span>
+    <span class="n">defconfig</span> <span class="o">=</span> <span class="s2">&quot;dh_imx6_defconfig&quot;</span>
+    <span class="n">toolchain</span> <span class="o">=</span> <span class="s2">&quot;imx6q&quot;</span>
+
+    <span class="n">testpy_boardenv</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;# Config for dhcom pdk2 board</span>
+
+<span class="s2"># A list of sections of Flash memory to be tested.</span>
+<span class="s2">env__sf_configs = (</span>
+<span class="s2">    {</span>
+<span class="s2">        # Where in SPI Flash should the test operate.</span>
+<span class="s2">        &#39;offset&#39;: 0x140000,</span>
+<span class="s2">        # This value is optional.</span>
+<span class="s2">        #   If present, specifies if the test can write to Flash offset</span>
+<span class="s2">        #   If missing, defaults to False.</span>
+<span class="s2">        &#39;writeable&#39;: True,</span>
+<span class="s2">    },</span>
+<span class="s2">)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">DHComUBoot</span><span class="p">(</span><span class="n">board</span><span class="o">.</span><span class="n">Connector</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;dhcom-uboot&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;=&gt; &quot;</span>
+
+    <span class="c1"># Don&#39;t forget this!</span>
+    <span class="n">build</span> <span class="o">=</span> <span class="n">DHComUBootBuilder</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contrib/connector.html" class="btn btn-neutral float-right" title="tbot_contrib.connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="selectable.html" class="btn btn-neutral float-left" title="tbot.selectable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

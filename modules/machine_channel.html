@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot.machine.channel &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot.selectable" href="selectable.html" />
+    <link rel="prev" title="tbot.machine.shell" href="machine_shell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#channel-class"><code class="docutils literal notranslate"><span class="pre">Channel</span></code> class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-strings">Search Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expect-result">Expect Result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementations">Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#channelio-interface"><code class="docutils literal notranslate"><span class="pre">ChannelIO</span></code> interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/machine_channel.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot.machine.channel"></span><div class="section" id="tbot-machine-channel">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code><a class="headerlink" href="#tbot-machine-channel" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-tbot.machine.channel" title="tbot.machine.channel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">channel</span></code></a> module provides the low-level
+implementation if interaction with machine.  A channel is analogous to a serial
+connection: You can send and receive bytes.  This ‘raw’ interface is abstracted
+as a <a class="reference internal" href="#tbot.machine.channel.ChannelIO" title="tbot.machine.channel.ChannelIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelIO</span></code></a>, for which there are multiple
+<a class="reference internal" href="#chanio-impls"><span class="std std-ref">Implementations</span></a>.</p>
+<div class="section" id="channel-class">
+<h2><code class="docutils literal notranslate"><span class="pre">Channel</span></code> class<a class="headerlink" href="#channel-class" title="Permalink to this headline">¶</a></h2>
+<p>The channel class has multiple different interfaces at different levels of
+abstraction which allow interacting with the underlying ‘raw’ channel.  These
+are:</p>
+<ul class="simple">
+<li><p><strong>Byte-level interface</strong>: The <a class="reference internal" href="#tbot.machine.channel.Channel.write" title="tbot.machine.channel.Channel.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a>
+and <a class="reference internal" href="#tbot.machine.channel.Channel.read" title="tbot.machine.channel.Channel.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> methods allow the most
+basic interaction.  For a bit more ergonomic use, there is also a
+<a class="reference internal" href="#tbot.machine.channel.Channel.read_iter" title="tbot.machine.channel.Channel.read_iter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_iter()</span></code></a>.</p></li>
+<li><p><strong>Log-stream interface</strong>: For interaction with the <a class="reference internal" href="log.html#module-tbot.log" title="tbot.log"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tbot.log</span></code></a> module
+and to allow capturing the entire received data in parallel to interfacing
+with the remote, channels provide the
+<a class="reference internal" href="#tbot.machine.channel.Channel.with_stream" title="tbot.machine.channel.Channel.with_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">with_stream()</span></code></a> context manager.</p></li>
+<li><p><strong>Death-strings</strong>: ‘Death-strings’ are strings (or regular expressions),
+which should never appear on the channel and when they do, an exception will
+be raised.  In an embedded setting, it might make sense to add the
+kernel-panic header as a death-string, for example.  For this purpose, the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">with_death_string()</span></code> context-manager is
+provided.</p></li>
+<li><p><strong>pexpect interface</strong>: tbot’s channel implementation also has methods
+mimicking the pexpect interface.  These are:</p>
+<ul>
+<li><p><a class="reference internal" href="#tbot.machine.channel.Channel.send" title="tbot.machine.channel.Channel.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.machine.channel.Channel.sendline" title="tbot.machine.channel.Channel.sendline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sendline()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.machine.channel.Channel.sendintr" title="tbot.machine.channel.Channel.sendintr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sendintr()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.machine.channel.Channel.readline" title="tbot.machine.channel.Channel.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">readline()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.machine.channel.Channel.expect" title="tbot.machine.channel.Channel.expect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">expect()</span></code></a></p></li>
+</ul>
+</li>
+<li><p><strong>Prompt handling</strong>: The <a class="reference internal" href="#tbot.machine.channel.Channel.read_until_prompt" title="tbot.machine.channel.Channel.read_until_prompt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_until_prompt()</span></code></a>
+method allows waiting for a prompt string to appear.  A global prompt-string
+can be configured with <a class="reference internal" href="#tbot.machine.channel.Channel.with_prompt" title="tbot.machine.channel.Channel.with_prompt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">with_prompt()</span></code></a>.</p></li>
+<li><p><strong>Borrowing &amp; taking</strong>: To model ownership of the channel, the
+<a class="reference internal" href="#tbot.machine.channel.Channel.borrow" title="tbot.machine.channel.Channel.borrow"><code class="xref py py-meth docutils literal notranslate"><span class="pre">borrow()</span></code></a> context-handler allows
+creating a copy of the channel which temporarily holds exclusive access to
+it.  This ensures that all references to the old channel are blocked for the
+duration of the borrow.  <a class="reference internal" href="#tbot.machine.channel.Channel.take" title="tbot.machine.channel.Channel.take"><code class="xref py py-meth docutils literal notranslate"><span class="pre">take()</span></code></a> does
+the same thing but permanently moves ownership.</p></li>
+<li><p><strong>Interactive Mode</strong>: Using
+<a class="reference internal" href="#tbot.machine.channel.Channel.attach_interactive" title="tbot.machine.channel.Channel.attach_interactive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">attach_interactive()</span></code></a>, an interactive
+session with this channel can be started.</p></li>
+</ul>
+<dl class="py class">
+<dt id="tbot.machine.channel.Channel">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.</code><code class="sig-name descname">Channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ContextManager" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.ContextManager</span></code></a></p>
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></span></em>, <em class="sig-param"><span class="n">_ignore_blacklist</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write some bytes to this channel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write()</span></code> ensures the whole buffer was written.  If this was not possible,
+it will throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>buf</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><em>bytes</em></a>) – Buffer with bytes to be written.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ChannelClosedException</strong> – If the channel was closed previous to, or
+during writing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.read">
+<code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive somy bytes from this channel.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">n</span></code> is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code> will wait until at least one byte is available
+and will then return all available bytes.  Otherwise it will wait until exactly
+<code class="docutils literal notranslate"><span class="pre">n</span></code> bytes could be read.  If timeout is not None and expires before this is
+the case, <code class="docutils literal notranslate"><span class="pre">read()</span></code> will raise an exception.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">read()</span></code> does not ensure that the returned bytes end with the end of a
+Unicode character boundary.  This means, decoding as Unicode can fail and
+code using <code class="docutils literal notranslate"><span class="pre">read()</span></code> should be prepared to deal with this case.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of bytes to read.  If <code class="docutils literal notranslate"><span class="pre">n</span></code> is not <code class="docutils literal notranslate"><span class="pre">-1</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code> will
+return <strong>exactly</strong> <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes.  If <code class="docutils literal notranslate"><span class="pre">n</span></code> is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, at least one byte is
+returned.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout.  If <code class="docutils literal notranslate"><span class="pre">timout</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code>
+will return early after <code class="docutils literal notranslate"><span class="pre">timeout</span></code> seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.read_iter">
+<code class="sig-name descname">read_iter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span> <span class="o">=</span> <span class="default_value">9223372036854775807</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.read_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.read_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over chunks of bytes read from the channel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">read_iter</span></code> reads at most <code class="docutils literal notranslate"><span class="pre">max</span></code> bytes from the channel before the
+iterator is exhausted.  If <code class="docutils literal notranslate"><span class="pre">timeout</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code> and expires
+before <code class="docutils literal notranslate"><span class="pre">max</span></code> bytes could be read, the next iteration attempt will
+raise an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of bytes to read.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.with_stream">
+<code class="sig-name descname">with_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span><span class="p">:</span> <span class="n">TextIO</span></em>, <em class="sig-param"><span class="n">show_prompt</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.8)">typing.Iterator</a><span class="p">[</span><a class="reference internal" href="#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel">Channel</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.with_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.with_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attatch a stream to this channel.</p>
+<p>All data read from the channel will also be sent to the stream.  This
+can be used, for example, to capture the entire boot-log of a board.
+<code class="docutils literal notranslate"><span class="pre">with_stream</span></code> should be used as a context-manager:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+
+<span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s2">&quot;Output: &quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ev</span><span class="p">,</span> <span class="n">chan</span><span class="o">.</span><span class="n">with_stream</span><span class="p">(</span><span class="n">ev</span><span class="p">):</span>
+    <span class="c1"># During this context block, output is captured into `ev`</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stream</strong> (<a class="reference external" href="https://docs.python.org/3/library/io.html#io.TextIOBase" title="(in Python v3.8)"><em>io.TextIOBase</em></a>) – The stream to attach.</p></li>
+<li><p><strong>show_prompt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether the currently configured prompt should
+also be sent to the stream if detected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.fileno">
+<code class="sig-name descname">fileno</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.fileno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.fileno" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a file descriptor which represents this channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close this channel.</p>
+<p>The following is always true:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">channel</span><span class="o">.</span><span class="n">closed</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.closed">
+<em class="property">property </em><code class="sig-name descname">closed</code><a class="headerlink" href="#tbot.machine.channel.Channel.closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this channel was already closed.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">channel.write()</span></code> immediately after checking <code class="docutils literal notranslate"><span class="pre">channel.closed</span></code> might
+still fail in the unlucky case where the remote end closed the channel just
+in between the two calls.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">read_back</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send data to this channel.</p>
+<p>Send <code class="docutils literal notranslate"><span class="pre">s</span></code> to this channel and optionally read it back (to not clobber
+the next read).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><em>bytes</em></a>) – Data to send.  A <code class="docutils literal notranslate"><span class="pre">str</span></code> will be encoded as UTF-8.</p></li>
+<li><p><strong>read_back</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to read back the sent data.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout for reading back data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.sendline">
+<code class="sig-name descname">sendline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">''</span></em>, <em class="sig-param"><span class="n">read_back</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.sendline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.sendline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send data to this channel and terminate with a newline.</p>
+<p>Send <code class="docutils literal notranslate"><span class="pre">s</span></code> and a newline (<code class="docutils literal notranslate"><span class="pre">\r</span></code>) to this channel and optionally read
+it back (to not clobber the next read).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><em>bytes</em></a>) – Data to send.  A <code class="docutils literal notranslate"><span class="pre">str</span></code> will be encoded as UTF-8.</p></li>
+<li><p><strong>read_back</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to read back the sent data.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout for reading back data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.sendcontrol">
+<code class="sig-name descname">sendcontrol</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.sendcontrol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.sendcontrol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a control-character to this terminal.</p>
+<p><code class="docutils literal notranslate"><span class="pre">c</span></code> is the keyboard key which would need to be pressed (for example
+<code class="docutils literal notranslate"><span class="pre">C</span></code> for <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code>).  See <a class="reference external" href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes">C0 and C1 control codes</a> for more info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Control character to send.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.sendintr">
+<code class="sig-name descname">sendintr</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.sendintr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.sendintr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code> to this channel.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.readline">
+<code class="sig-name descname">readline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lineending</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'\r\n'</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.readline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.readline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read until the next line ending.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ch</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;echo Hello; echo World&quot;</span><span class="p">,</span> <span class="n">read_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">ch</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Hello</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="k">assert</span> <span class="n">ch</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;World</span><span class="se">\n</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.expect">
+<code class="sig-name descname">expect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">patterns</span><span class="p">:</span> <span class="n">Union[bytes, tbot.machine.channel.channel.BoundedPattern, Pattern[~ AnyStr], str, List[Union[bytes, tbot.machine.channel.channel.BoundedPattern, Pattern[~ AnyStr], str]]]</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#tbot.machine.channel.channel.ExpectResult" title="tbot.machine.channel.channel.ExpectResult">tbot.machine.channel.channel.ExpectResult</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.expect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.expect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for a pattern to appear in the incoming data.</p>
+<p>This method is similar to <a class="reference external" href="https://pexpect.readthedocs.io/en/stable/overview.html">pexpect</a>’s <code class="docutils literal notranslate"><span class="pre">expect()</span></code> although there are
+a few important differences.</p>
+<p><code class="docutils literal notranslate"><span class="pre">expect()</span></code> will read ahead in the input stream until one of the
+patterns in <code class="docutils literal notranslate"><span class="pre">patterns</span></code> matches or, if not <code class="docutils literal notranslate"><span class="pre">None</span></code>, the <code class="docutils literal notranslate"><span class="pre">timeout</span></code>
+expires.  It might read further than the given pattern, if the input
+contains follow-up bytes in the same chunk of data.</p>
+<p>Different to <a class="reference external" href="https://pexpect.readthedocs.io/en/stable/overview.html">pexpect</a>, the results are availble as an
+<a class="reference internal" href="#channel-expect-result"><span class="std std-ref">Expect Result</span></a> (<a class="reference internal" href="#tbot.machine.channel.channel.ExpectResult" title="tbot.machine.channel.channel.ExpectResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExpectResult</span></code></a>)
+which is returned on match.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>patterns</strong> – Pattern(s) to wait for.  Can be either a single
+pattern or a list of patterns.  See <a class="reference internal" href="#channel-search-string"><span class="std std-ref">Search Strings</span></a>
+for more info about which types can be passed as patterns.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.with_prompt">
+<code class="sig-name descname">with_prompt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prompt_in</span><span class="p">:</span> <span class="n">Union[bytes, tbot.machine.channel.channel.BoundedPattern, Pattern[~ AnyStr], str]</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.8)">typing.Iterator</a><span class="p">[</span><a class="reference internal" href="#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel">Channel</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.with_prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.with_prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the prompt for this channel during a context.</p>
+<p><code class="docutils literal notranslate"><span class="pre">with_prompt</span></code> is a context-manager that sets the prompt for this
+channel for the duration of a context:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">chan</span><span class="o">.</span><span class="n">with_prompt</span><span class="p">(</span><span class="s2">&quot;=&gt; &quot;</span><span class="p">):</span>
+    <span class="n">chan</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;echo Foo&quot;</span><span class="p">,</span> <span class="n">read_back</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Waits for `=&gt; `</span>
+    <span class="n">chan</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>prompt</strong> (<a class="reference internal" href="#tbot.machine.channel.ConvenientSearchString" title="tbot.machine.channel.ConvenientSearchString"><em>ConvenientSearchString</em></a>) – The new prompt pattern/string.
+See <a class="reference internal" href="#channel-search-string"><span class="std std-ref">Search Strings</span></a> for more info.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.read_until_prompt">
+<code class="sig-name descname">read_until_prompt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prompt</span><span class="p">:</span> <span class="n">Optional[Union[bytes, tbot.machine.channel.channel.BoundedPattern, Pattern[~ AnyStr], str]]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.read_until_prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.read_until_prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read until prompt is detected.</p>
+<p>Read from the channel until the configured prompt string is detected.
+All data captured up until the prompt is returned, decoded as UTF-8.
+If <code class="docutils literal notranslate"><span class="pre">prompt</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the prompt which was set using
+<a class="reference internal" href="#tbot.machine.channel.Channel.with_prompt" title="tbot.machine.channel.Channel.with_prompt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tbot.machine.channel.Channel.with_prompt()</span></code></a> is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prompt</strong> (<a class="reference internal" href="#tbot.machine.channel.ConvenientSearchString" title="tbot.machine.channel.ConvenientSearchString"><em>ConvenientSearchString</em></a>) – The prompt to read up to.  It
+must appear as the very last readable data in the channel’s data
+stream.  See <a class="reference internal" href="#channel-search-string"><span class="std std-ref">Search Strings</span></a> for more info about which
+types can be passed for this parameter.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout.  If <code class="docutils literal notranslate"><span class="pre">timeout</span></code> is set and
+expires before the prompt was detected, <code class="docutils literal notranslate"><span class="pre">read_until_prompt</span></code>
+raises an execption.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>UTF-8 decoded string of all bytes read up to the prompt.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.read_until_timeout">
+<code class="sig-name descname">read_until_timeout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.read_until_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.read_until_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read until the given timeout expires.</p>
+<p>This method will only return after the given timeout expires.  This can
+be useful when waiting for something to start up, but when all console
+output should still become immediately visible on stdout.</p>
+<p>Another use-case is waiting for a death-string to appear or a
+run-command to exit.  In those cases, pass <code class="docutils literal notranslate"><span class="pre">None</span></code> as timeout to make
+this method wait indefinitely.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The time to wait for, before returning.  Can be
+<code class="docutils literal notranslate"><span class="pre">None</span></code> to signal infinite wait time.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>All data received while waiting.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.borrow">
+<code class="sig-name descname">borrow</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.8)">typing.Iterator</a><span class="p">[</span><a class="reference internal" href="#tbot.machine.channel.Channel" title="tbot.machine.channel.Channel">Channel</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.borrow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.borrow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temporarily borrow this channel for the duration of a context.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">chan</span><span class="o">.</span><span class="n">borrow</span><span class="p">()</span> <span class="k">as</span> <span class="n">chan2</span><span class="p">:</span>
+    <span class="c1"># `chan` cannot be accessed inside this context</span>
+    <span class="n">chan2</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+
+<span class="c1"># `chan` can be accessed again here</span>
+<span class="n">chan</span><span class="o">.</span><span class="n">sendintr</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.take">
+<code class="sig-name descname">take</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tbot.machine.channel.channel.Channel<a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.take"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.take" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move ownership of this channel.</p>
+<p>All existing references to this channel will no longer be accessible
+after callin <code class="docutils literal notranslate"><span class="pre">take()</span></code>.  Use this to mark transitions of a channel
+into a new (irreversible) context.  For example, when a board boots
+from U-Boot to Linux, U-Boot is no longer accessible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.Channel.attach_interactive">
+<code class="sig-name descname">attach_interactive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">end_magic</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#Channel.attach_interactive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.Channel.attach_interactive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect tbot’s terminal to this channel.</p>
+<p>Allows the user to interact directly with whatever this channel is
+connected to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bytes end_magic</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>,</em>) – String that, when detected, should end the
+interactive session.  If no <code class="docutils literal notranslate"><span class="pre">end_magic</span></code> is given, pressing
+<code class="docutils literal notranslate"><span class="pre">CTRL-D</span></code> will terminate the session.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="search-strings">
+<span id="channel-search-string"></span><h2>Search Strings<a class="headerlink" href="#search-strings" title="Permalink to this headline">¶</a></h2>
+<p>A lot of channel methods are marked to take a <a class="reference internal" href="#tbot.machine.channel.ConvenientSearchString" title="tbot.machine.channel.ConvenientSearchString"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConvenientSearchString</span></code></a>:</p>
+<dl class="py class">
+<dt id="tbot.machine.channel.ConvenientSearchString">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.</code><code class="sig-name descname">ConvenientSearchString</code><a class="headerlink" href="#tbot.machine.channel.ConvenientSearchString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This is just an ‘umbrella’ above a few different possible types which can be
+passed in here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a>: Will be matched literally.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>: Will be encoded as UTF-8 and the resulting bytes are matched literally.</p></li>
+<li><p><em>Compiled Regex Pattern</em>: An <code class="docutils literal notranslate"><span class="pre">re</span></code> <strong>byte</strong>-pattern with a bounded
+length can also be passed in.  The bounded length is required for efficient
+searching.  This means, instead of <code class="docutils literal notranslate"><span class="pre">.*</span></code> you need to match a maximum number
+of chars like <code class="docutils literal notranslate"><span class="pre">.{0,80}</span></code>.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># A `str` or `bytes` object will be matched literally</span>
+<span class="k">with</span> <span class="n">chan</span><span class="o">.</span><span class="n">with_death_string</span><span class="p">(</span><span class="s2">&quot;Kernel panic - not syncing: &quot;</span><span class="p">):</span>
+   <span class="o">...</span>
+
+<span class="c1"># A regexp pattern (byte-pattern!)</span>
+<span class="n">pat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;[a-zA-Z0-9-]{1,80} login: &quot;</span><span class="p">)</span>
+<span class="n">chan</span><span class="o">.</span><span class="n">read_until_prompt</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="expect-result">
+<span id="channel-expect-result"></span><h2>Expect Result<a class="headerlink" href="#expect-result" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.channel.channel.ExpectResult">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.channel.</code><code class="sig-name descname">ExpectResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">match</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a><span class="p">, </span>Match<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">before</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">after</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ExpectResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.channel.ExpectResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<p>Result from a call to <a class="reference internal" href="#tbot.machine.channel.Channel.expect" title="tbot.machine.channel.Channel.expect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">expect()</span></code></a>.</p>
+<p>Create new instance of ExpectResult(i, match, before, after)</p>
+<dl class="py method">
+<dt id="tbot.machine.channel.channel.ExpectResult.i">
+<em class="property">property </em><code class="sig-name descname">i</code><a class="headerlink" href="#tbot.machine.channel.channel.ExpectResult.i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index into the pattern list of the matched pattern (if a list was passed to
+<a class="reference internal" href="#tbot.machine.channel.Channel.expect" title="tbot.machine.channel.Channel.expect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">expect()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.channel.ExpectResult.match">
+<em class="property">property </em><code class="sig-name descname">match</code><a class="headerlink" href="#tbot.machine.channel.channel.ExpectResult.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Match object if the pattern was a regex-pattern or the literal if the
+pattern was a <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.channel.ExpectResult.before">
+<em class="property">property </em><code class="sig-name descname">before</code><a class="headerlink" href="#tbot.machine.channel.channel.ExpectResult.before" title="Permalink to this definition">¶</a></dt>
+<dd><p>Everything from the input stream before the match, up to the matched pattern.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.channel.ExpectResult.after">
+<em class="property">property </em><code class="sig-name descname">after</code><a class="headerlink" href="#tbot.machine.channel.channel.ExpectResult.after" title="Permalink to this definition">¶</a></dt>
+<dd><p>Any potential bytes which were read following the matched pattern.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="implementations">
+<span id="chanio-impls"></span><h2>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tbot.machine.channel.SubprocessChannel">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.</code><code class="sig-name descname">SubprocessChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/channel/subprocess.html#SubprocessChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.SubprocessChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.channel.channel.Channel</span></code></p>
+<p>A channel based on opening a shell in a subprocess.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.machine.channel.ParamikoChannel">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.</code><code class="sig-name descname">ParamikoChannel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/channel/paramiko.html#ParamikoChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ParamikoChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tbot.machine.channel.channel.Channel</span></code></p>
+<p>A channel based on opening an SSH-connection via paramiko.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="channelio-interface">
+<h2><code class="docutils literal notranslate"><span class="pre">ChannelIO</span></code> interface<a class="headerlink" href="#channelio-interface" title="Permalink to this headline">¶</a></h2>
+<p>This is the interface each channel implementation needs to implement.  The
+actual channel class is just a wrapper ontop of it.</p>
+<dl class="py class">
+<dt id="tbot.machine.channel.ChannelIO">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.machine.channel.</code><code class="sig-name descname">ChannelIO</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ContextManager" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">typing.ContextManager</span></code></a></p>
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.write">
+<em class="property">abstract </em><code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">buf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write some bytes to this channel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write()</span></code> returns the number of bytes written.  This number might be lower
+than <code class="docutils literal notranslate"><span class="pre">len(buf)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>buf</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)"><em>bytes</em></a>) – Buffer with bytes to be written.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ChannelClosedException</strong> – If the channel was closed previous to, or
+during writing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.read">
+<em class="property">abstract </em><code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">timeout</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive somy bytes from this channel.</p>
+<p>Return at most <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes, but at least 1 (if <code class="docutils literal notranslate"><span class="pre">n</span></code> is not <code class="docutils literal notranslate"><span class="pre">0</span></code>).  Raise an
+exception if <code class="docutils literal notranslate"><span class="pre">timeout</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code> and expires before data was received.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of bytes to read.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Optional timeout.  If <code class="docutils literal notranslate"><span class="pre">timout</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code>
+will return early after <code class="docutils literal notranslate"><span class="pre">timeout</span></code> seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.8)">bytes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.close">
+<em class="property">abstract </em><code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close this channel.</p>
+<p>The following invariant <strong>must</strong> be upheld by an implementation:</p>
+<blockquote>
+<div><p>channel.close()
+assert channel.closed</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.fileno">
+<em class="property">abstract </em><code class="sig-name descname">fileno</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO.fileno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO.fileno" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a file descriptor which represents this channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.closed">
+<em class="property">abstract property </em><code class="sig-name descname">closed</code><a class="headerlink" href="#tbot.machine.channel.ChannelIO.closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this channel was already closed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tbot.machine.channel.ChannelIO.update_pty">
+<em class="property">abstract </em><code class="sig-name descname">update_pty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">columns</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">lines</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="reference internal" href="../_modules/tbot/machine/channel/channel.html#ChannelIO.update_pty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.machine.channel.ChannelIO.update_pty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the terminal window size of this channel.</p>
+<p>Channels lacking this functionality should silently ignore this call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colums</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The new width of the pty.</p></li>
+<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The new height of the pty.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="selectable.html" class="btn btn-neutral float-right" title="tbot.selectable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine_shell.html" class="btn btn-neutral float-left" title="tbot.machine.shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

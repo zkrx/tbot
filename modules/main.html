@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tbot &mdash; tbot 0.8.3-0-g1e4eea4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tbot.log" href="log.html" />
+    <link rel="prev" title="Migrating from tbot 0.7.1" href="../migration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/tbot-logo-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.3-0-g1e4eea4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes.html">Recipes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migrating from tbot 0.7.1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Core Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">tbot</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#testcase-decorators">Testcase Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convenience-decorators">Convenience Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testcase-skipping">Testcase Skipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-machine-access">Default Machine Access</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="log.html"><code class="docutils literal notranslate"><span class="pre">tbot.log</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_linux.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.linux</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_board.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_connector.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_shell.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.shell</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_channel.html"><code class="docutils literal notranslate"><span class="pre">tbot.machine.channel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectable.html"><code class="docutils literal notranslate"><span class="pre">tbot.selectable</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Testcase Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tc.html"><code class="docutils literal notranslate"><span class="pre">tbot.tc</span></code> - Builtin Testcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/connector.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.connector</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/swupdate.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.swupdate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/timing.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.timing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib/utils.html"><code class="docutils literal notranslate"><span class="pre">tbot_contrib.utils</span></code></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing to tbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tbot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">tbot</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/main.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-tbot"></span><div class="section" id="tbot">
+<h1><code class="docutils literal notranslate"><span class="pre">tbot</span></code><a class="headerlink" href="#tbot" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="testcase-decorators">
+<h2>Testcase Decorators<a class="headerlink" href="#testcase-decorators" title="Permalink to this headline">¶</a></h2>
+<p>In tbot, testcases are marked using one of the following decorators.  This will
+make tbot aware of the testcase and allows you to call it from the commandline.
+The testcase decorators will also track time and success of each run.</p>
+<dl class="py function">
+<dt id="tbot.testcase">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">testcase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; ContextManager<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">]</span><a class="reference internal" href="../_modules/tbot.html#testcase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.testcase" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">testcase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arg</span><span class="p">:</span> <span class="n">F_tc</span></em><span class="sig-paren">)</span> &#x2192; F_tc</dt>
+<dd><p>Mark a testcase.</p>
+<p>This function can be used in two ways; either as a decorator for a function
+or as a context-manager.  The first form is probably what is most commonly
+used because testcases defined using this decorator will be callable from
+the commandline.</p>
+<p><strong>Decorator</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">foobar_testcase</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Context-Manager</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">testcase</span><span class="p">(</span><span class="s2">&quot;test_foo_bar&quot;</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.named_testcase">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">named_testcase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span>F_tc<span class="p">, </span>F_tc<span class="p">]</span><a class="reference internal" href="../_modules/tbot/decorators.html#named_testcase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.named_testcase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function to make it a testcase, but with a different name.</p>
+<p>The testcase’s name is relevant for log-events and when calling
+it from the commandline.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@tbot</span><span class="o">.</span><span class="n">named_testcase</span><span class="p">(</span><span class="s2">&quot;my_different_testcase&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">foobar_testcase</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(On the commandline you’ll have to run <code class="docutils literal notranslate"><span class="pre">tbot</span> <span class="pre">my_different_testcase</span></code> now.)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="convenience-decorators">
+<h2>Convenience Decorators<a class="headerlink" href="#convenience-decorators" title="Permalink to this headline">¶</a></h2>
+<p>To make writing testcase interacting with machines easier, tbot provides three
+more decorators to allow easily writing extensible testcases.  They look like
+this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_uboot</span>
+<span class="k">def</span> <span class="nf">uboot_testcase</span><span class="p">(</span><span class="n">ub</span><span class="p">:</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">,</span> <span class="n">foo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+   <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">uboot_testcase()</span></code> can now be called in three different ways:</p>
+<ol class="arabic simple">
+<li><p>Without any arguments (eg. from the commandline):  The decorator will take
+care of first connecting to the lab-host and then powering up the board and
+initializing the U-Boot machine.</p></li>
+<li><p>Passing a lab-host as an argument:  The decorator will take care of powering
+up the board and initializing the U-Boot machine.</p></li>
+<li><p>Passing a U-Boot machine: No additional work is needed and the test can run
+immediately.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As seen above, you can still have additional arguments as well.  Those will
+work as expected, but you need to pass them as kwargs now:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uboot_testcase</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">uboot_testcase</span><span class="p">(</span><span class="n">lh</span><span class="p">,</span> <span class="n">foo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">uboot_testcase</span><span class="p">(</span><span class="n">ub</span><span class="p">,</span> <span class="n">foo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or on the commandline:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tbot @myargs uboot_testcase -pfoo<span class="o">=</span>True
+</pre></div>
+</div>
+</div>
+<p>Three decorators of this style are currently available:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tbot.with_lab" title="tbot.with_lab"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_lab()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.with_uboot" title="tbot.with_uboot"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_uboot()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#tbot.with_linux" title="tbot.with_linux"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.with_linux()</span></code></a></p></li>
+</ul>
+<dl class="py function">
+<dt id="tbot.with_lab">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">with_lab</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tc</span><span class="p">:</span> <span class="n">F_lh</span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../_modules/tbot/decorators.html#with_lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.with_lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function to automatically supply the lab-host as an argument.</p>
+<p>The idea is that when using this decorator and calling the testcase
+without a lab-host, tbot will automatically acquire the default lab.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_lab</span>
+<span class="k">def</span> <span class="nf">testcase_with_lab</span><span class="p">(</span><span class="n">lh</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is essentially syntactic sugar for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">testcase_with_lab</span><span class="p">(</span>
+    <span class="n">lab</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">lab</span> <span class="ow">or</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+        <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While making your life a lot easier, this decorator unfortunately has
+a drawback:  It will erase the type signature of your testcase, so you
+can no longer rely on type-checking when using the testcase downstream.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.with_uboot">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">with_uboot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tc</span><span class="p">:</span> <span class="n">F_ub</span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../_modules/tbot/decorators.html#with_uboot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.with_uboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function to automatically supply a U-Boot machine as an argument.</p>
+<p>The idea is that when using this decorator and calling the testcase
+without an already initialized U-Boot machine, tbot will automatically
+acquire the selected one.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_uboot</span>
+<span class="k">def</span> <span class="nf">testcase_with_uboot</span><span class="p">(</span><span class="n">ub</span><span class="p">:</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is essentially syntactic sugar for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span><span class="p">,</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">testcase_with_uboot</span><span class="p">(</span>
+    <span class="n">lab_or_ub</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">cx</span><span class="p">:</span>
+        <span class="n">lh</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">Lab</span>
+        <span class="n">ub</span><span class="p">:</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="p">,</span> <span class="n">linux</span><span class="o">.</span><span class="n">Lab</span><span class="p">):</span>
+            <span class="n">lh</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">):</span>
+            <span class="n">lh</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lh</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="p">,</span> <span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">):</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">lab_or_ub</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">))</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+        <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While making your life a lot easier, this decorator unfortunately has
+a drawback:  It will erase the type signature of your testcase, so you
+can no longer rely on type-checking when using the testcase downstream.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.with_linux">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">with_linux</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tc</span><span class="p">:</span> <span class="n">F_lnx</span></em><span class="sig-paren">)</span> &#x2192; Callable<span class="p">[</span><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><a class="reference internal" href="../_modules/tbot/decorators.html#with_linux"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.with_linux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorate a function to automatically supply a board Linux machine as an argument.</p>
+<p>The idea is that when using this decorator and calling the testcase
+without an already initialized Linux machine, tbot will automatically
+acquire the selected one.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_linux</span>
+<span class="k">def</span> <span class="nf">testcase_with_linux</span><span class="p">(</span><span class="n">lnx</span><span class="p">:</span> <span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">lnx</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;uname&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While making your life a lot easier, this decorator unfortunately has
+a drawback:  It will erase the type signature of your testcase, so you
+can no longer rely on type-checking when using the testcase downstream.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="testcase-skipping">
+<h2>Testcase Skipping<a class="headerlink" href="#testcase-skipping" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes a test can only run with certain prerequisites met.  You can write a
+testcase to automatically skip when they aren’t, using <a class="reference internal" href="#tbot.skip" title="tbot.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.skip()</span></code></a>:</p>
+<dl class="py function">
+<dt id="tbot.skip">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">skip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reason</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span> &#x2192; NoReturn<a class="reference internal" href="../_modules/tbot.html#skip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skip this testcase.</p>
+<p>A skipped testcase will return <code class="docutils literal notranslate"><span class="pre">None</span></code> instead of whatever type it would
+return normally.  This might not make sense for certain testcases and might
+violate the type-annotation.  <em>Only use it, if it really makes sense!</em></p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">with_lab</span>
+<span class="k">def</span> <span class="nf">test_something</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">lh</span><span class="o">.</span><span class="n">fsroot</span> <span class="o">/</span> <span class="s2">&quot;dev&quot;</span> <span class="o">/</span> <span class="s2">&quot;somedevice&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">is_char_device</span><span class="p">():</span>
+        <span class="n">tbot</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;somedevice not present on this host&quot;</span><span class="p">)</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="tbot.SkipException">
+<em class="property">class </em><code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">SkipException</code><a class="reference internal" href="../_modules/tbot.html#SkipException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.SkipException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception to be used when a testcase is skipped.</p>
+<p>Raising a <a class="reference internal" href="#tbot.SkipException" title="tbot.SkipException"><code class="xref py py-class docutils literal notranslate"><span class="pre">SkipException</span></code></a> will be caught in the
+<a class="reference internal" href="#tbot.testcase" title="tbot.testcase"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.testcase()</span></code></a> decorator and the testcase will return <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+This might violate the type-annotations so it should only be used if
+calling code can deal with a testcase returning <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="default-machine-access">
+<h2>Default Machine Access<a class="headerlink" href="#default-machine-access" title="Permalink to this headline">¶</a></h2>
+<p>There are a few machines which can be configured in the <em>Configuration</em> and
+then accessed through the following functions.  This allows you to write
+generic testcases, based on using one or more of them:</p>
+<dl class="py function">
+<dt id="tbot.acquire_lab">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">acquire_lab</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="selectable.html#tbot.selectable.LocalLabHost" title="tbot.selectable.LocalLabHost">tbot.selectable.LocalLabHost</a><a class="reference internal" href="../_modules/tbot/selectable.html#acquire_lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.acquire_lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire a new connection to the LabHost.</p>
+<p>If your lab-host is using a <a class="reference internal" href="machine_connector.html#tbot.machine.connector.ParamikoConnector" title="tbot.machine.connector.ParamikoConnector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamikoConnector</span></code></a>
+this will create a new ssh connection.</p>
+<p>You should call this function as little as possible, because it can be very slow.
+If possible, try to reuse the labhost. A recipe for doing so is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">linux</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">my_testcase</span><span class="p">(</span>
+    <span class="n">lab</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">linux</span><span class="o">.</span><span class="n">LinuxShell</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">lab</span> <span class="ow">or</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+        <span class="c1"># Your code goes here</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tbot.selectable.LabHost</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.acquire_local">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">acquire_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="selectable.html#tbot.selectable.LocalLabHost" title="tbot.selectable.LocalLabHost">tbot.selectable.LocalLabHost</a><a class="reference internal" href="../_modules/tbot/selectable.html#acquire_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.acquire_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire a machine for the local host.</p>
+<p>Localhost machines are very cheap so they do not need to be shared
+like the others and you can create as many as you want.  One usecase
+might be copying test-results to you local machine after the run.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tbot</span>
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">my_testcase</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_local</span><span class="p">()</span> <span class="k">as</span> <span class="n">lo</span><span class="p">:</span>
+        <span class="n">lo</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;-un&quot;</span><span class="p">)</span>
+        <span class="c1"># On local machines you can access tbot&#39;s working directory:</span>
+        <span class="n">tbot</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CWD: </span><span class="si">{</span><span class="n">lo</span><span class="o">.</span><span class="n">workdir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.acquire_board">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">acquire_board</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lh</span><span class="p">:</span> <span class="n"><a class="reference internal" href="selectable.html#tbot.selectable.LocalLabHost" title="tbot.selectable.LocalLabHost">tbot.selectable.LocalLabHost</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="selectable.html#tbot.selectable.Board" title="tbot.selectable.Board">tbot.selectable.Board</a><a class="reference internal" href="../_modules/tbot/selectable.html#acquire_board"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.acquire_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire the selected board.</p>
+<p>If configured properly, <a class="reference internal" href="#tbot.acquire_board" title="tbot.acquire_board"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_board()</span></code></a> will power on the
+hardware and open a serial-console for the selected board.  Just by itself,
+this is not too useful, so you will usually follow it up immediately with a
+call to either <a class="reference internal" href="#tbot.acquire_uboot" title="tbot.acquire_uboot"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_uboot()</span></code></a> or
+<a class="reference internal" href="#tbot.acquire_linux" title="tbot.acquire_linux"><code class="xref py py-func docutils literal notranslate"><span class="pre">tbot.acquire_linux()</span></code></a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">()</span> <span class="k">as</span> <span class="n">lh</span><span class="p">:</span>
+    <span class="n">lh</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="s2">&quot;Foo&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">)</span> <span class="k">as</span> <span class="n">b</span><span class="p">,</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">ub</span><span class="p">:</span>
+        <span class="n">ub</span><span class="o">.</span><span class="n">exec0</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.acquire_uboot">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">acquire_uboot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">board</span><span class="p">:</span> <span class="n"><a class="reference internal" href="selectable.html#tbot.selectable.Board" title="tbot.selectable.Board">tbot.selectable.Board</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="selectable.html#tbot.selectable.UBootMachine" title="tbot.selectable.UBootMachine">tbot.selectable.UBootMachine</a><a class="reference internal" href="../_modules/tbot/selectable.html#acquire_uboot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.acquire_uboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire the selected board’s U-Boot shell.</p>
+<p>As there can only be one instance of the selected board’s <code class="xref py py-class docutils literal notranslate"><span class="pre">UBootShell</span></code> at a time,
+your testcases should optionally take the <code class="xref py py-class docutils literal notranslate"><span class="pre">UBootShell</span></code> as a
+parameter. The recipe looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">my_testcase</span><span class="p">(</span>
+    <span class="n">lab</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tbot</span><span class="o">.</span><span class="n">selectable</span><span class="o">.</span><span class="n">LabHost</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">uboot</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">board</span><span class="o">.</span><span class="n">UBootShell</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">cx</span><span class="p">:</span>
+        <span class="n">lh</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">lab</span> <span class="ow">or</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">uboot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">uboot</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">))</span>
+            <span class="n">ub</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_uboot</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+        <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="selectable.html#tbot.selectable.UBootMachine" title="tbot.selectable.UBootMachine">tbot.selectable.UBootMachine</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tbot.acquire_linux">
+<code class="sig-prename descclassname">tbot.</code><code class="sig-name descname">acquire_linux</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">b</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="selectable.html#tbot.selectable.Board" title="tbot.selectable.Board">tbot.selectable.Board</a><span class="p">, </span><a class="reference internal" href="selectable.html#tbot.selectable.UBootMachine" title="tbot.selectable.UBootMachine">tbot.selectable.UBootMachine</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="selectable.html#tbot.selectable.LinuxMachine" title="tbot.selectable.LinuxMachine">tbot.selectable.LinuxMachine</a><a class="reference internal" href="../_modules/tbot/selectable.html#acquire_linux"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tbot.acquire_linux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire the board’s Linux shell.</p>
+<p>Can either boot from a previously created U-Boot (if the implementation
+supports this) or directly.</p>
+<p>To write testcases that work both from the commandline and when called from other
+testcases, use the following recipe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">tbot</span>
+<span class="kn">from</span> <span class="nn">tbot.machine</span> <span class="kn">import</span> <span class="n">board</span>
+
+
+<span class="nd">@tbot</span><span class="o">.</span><span class="n">testcase</span>
+<span class="k">def</span> <span class="nf">test_testcase</span><span class="p">(</span>
+    <span class="n">lab</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">tbot</span><span class="o">.</span><span class="n">selectable</span><span class="o">.</span><span class="n">LabHost</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">board_linux</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">board</span><span class="o">.</span><span class="n">LinuxMachine</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">cx</span><span class="p">:</span>
+        <span class="n">lh</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">lab</span> <span class="ow">or</span> <span class="n">tbot</span><span class="o">.</span><span class="n">acquire_lab</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">board_linux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lnx</span> <span class="o">=</span> <span class="n">board_linux</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_board</span><span class="p">(</span><span class="n">lh</span><span class="p">))</span>
+            <span class="n">lnx</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">tbot</span><span class="o">.</span><span class="n">acquire_linux</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+        <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="machine_linux.html#tbot.machine.linux.LinuxShell" title="tbot.machine.linux.LinuxShell">tbot.machine.linux.LinuxShell</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/Rahix/tbot">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="log.html" class="btn btn-neutral float-right" title="tbot.log" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../migration.html" class="btn btn-neutral float-left" title="Migrating from tbot 0.7.1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Rahix
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
